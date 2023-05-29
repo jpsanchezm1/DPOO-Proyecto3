@@ -1,4 +1,4 @@
-package pruebas;
+package appHotel;
 
 import static org.junit.jupiter.api.Assertions.*;
 
