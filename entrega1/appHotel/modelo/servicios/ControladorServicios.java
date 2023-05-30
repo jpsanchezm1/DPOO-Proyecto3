@@ -16,27 +16,24 @@ public class ControladorServicios {
 
 	public void cargarServicios(String rutaArchivo) throws IOException {
 		CargadorServicios cargadorServicios = new CargadorServicios();
-		cargadorServicios.cargarServicios(rutaArchivo, mapaServicios);
+		cargadorServicios.cargarServicios(rutaArchivo, mapaServicios, archivoServicios, true);
 	}
 
 	public void crearServicio(String nombre, String precioString) throws IOException {
 		Float precio = Float.parseFloat(precioString);
 		mapaServicios.computeIfAbsent(nombre, k -> new Servicio(nombre, precio));
 		mapaServicios.get(nombre).setPrecio(precio);
+		EditorServicios editor = new EditorServicios();
+		editor.registrarServicio(nombre, precioString, precioString);
 	}
 
 	public Servicio consultarServicio(String nombre) {
 		return mapaServicios.get(nombre);
 	}
 
-	public void guardarRegistros() throws IOException {
-		EditorServicios editor = new EditorServicios();
-		editor.guardarRegistros(mapaServicios, archivoServicios);
-	}
-
 	private void recuperarInformacion() throws IOException {
 		CargadorServicios cargadorServicios = new CargadorServicios();
-		cargadorServicios.cargarServicios(archivoServicios, mapaServicios);
+		cargadorServicios.cargarServicios(archivoServicios, mapaServicios, archivoServicios, false);
 	}
 
 	public Map<String, Servicio> getMapaServicios() {

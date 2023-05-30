@@ -2,8 +2,6 @@ package consola.administracion;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -15,7 +13,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import consola.InterfazPMS;
 import coordinadores.CoordinadorAdministrador;
-import modelo.habitaciones.ControladorHabitaciones;
 
 public class InterfazAdministracion extends JFrame {
 
@@ -42,17 +39,6 @@ public class InterfazAdministracion extends JFrame {
 		panelOpsCentrado.add(panelOpciones);
 
 		add(panelOpciones);
-		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				try {
-					padre.guardarRegistros();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
 
 	}
 

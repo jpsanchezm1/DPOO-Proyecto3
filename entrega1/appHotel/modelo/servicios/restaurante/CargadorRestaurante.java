@@ -25,8 +25,9 @@ public class CargadorRestaurante {
 	}
 
 	private void cargarProductos(String categoria, String rutaArchivo, Map<String, Map<String, ProductoMenu>> menu,
-			Map<String, ProductoMenu> menuSimple) throws IOException {
+			Map<String, ProductoMenu> menuSimple, boolean nuevo) throws IOException {
 		BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo));
+		EditorRestaurante editor = new EditorRestaurante();
 		String linea;
 		while ((linea = lector.readLine()) != null) {
 			String[] parametros = linea.split(";");
@@ -35,14 +36,17 @@ public class CargadorRestaurante {
 			String rangoDisponibilidad = parametros[2];
 			String llevableAHabitacion = parametros[3];
 			anadirProductoMenu(categoria, nombre, precio, rangoDisponibilidad, llevableAHabitacion, menu, menuSimple);
+			if (nuevo) {
+				editor.registrarProducto(categoria, nombre, precio, rangoDisponibilidad, llevableAHabitacion);
+			}
 		}
 		lector.close();
 	}
 
 	public void cargarMenu(String rutaArchivoPlatos, String rutaArchivoBebidas,
-			Map<String, Map<String, ProductoMenu>> menu, Map<String, ProductoMenu> menuSimple) throws IOException {
+			Map<String, Map<String, ProductoMenu>> menu, Map<String, ProductoMenu> menuSimple, boolean nuevo) throws IOException {
 		// el mapa menu está compuesto por categoría = { nombreProducto: Producto}
-		cargarProductos("platos", rutaArchivoPlatos, menu, menuSimple);
-		cargarProductos("bebidas", rutaArchivoBebidas, menu, menuSimple);
+		cargarProductos("platos", rutaArchivoPlatos, menu, menuSimple, nuevo);
+		cargarProductos("bebidas", rutaArchivoBebidas, menu, menuSimple, nuevo);
 	}
 }

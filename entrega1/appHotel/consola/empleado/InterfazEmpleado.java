@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -28,27 +26,16 @@ public class InterfazEmpleado extends JFrame implements ActionListener {
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setResizable(false);
 		setLocationRelativeTo(null); // Centra la ventana en la pantalla
-		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				try {
-					padre.guardarRegistros();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		
+
 		panelOpciones = new PanelOpciones(this);
 		panelConsumo = new PanelConsumo(this);
 		panelConsumo.setTitle("Registrar Consumos");
-		//panelConsumo.setSize(700, 600);
+		// panelConsumo.setSize(700, 600);
 		panelConsumo.setLocationRelativeTo(null);
 		add(panelOpciones);
-		//panelConsumo.setVisible(true);
+		// panelConsumo.setVisible(true);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
@@ -57,13 +44,17 @@ public class InterfazEmpleado extends JFrame implements ActionListener {
 			panelOpciones.setVisible(true);
 			String categoria = panelConsumo.categoria();
 			String pago = panelConsumo.pago();
-			String paga = (pago.equals("Sí")) ? "True" : "False";
 			String id = panelConsumo.id();
 			String referencia = panelConsumo.referencia();
-			padre.registrarConsumo(categoria,id,referencia,pago);
+			try {
+				padre.registrarConsumo(categoria, id, referencia, pago);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
-	
+
 	public void mostrarPanelConsumo() {
 		panelConsumo.setVisible(true);
 	}

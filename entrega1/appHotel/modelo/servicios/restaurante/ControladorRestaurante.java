@@ -26,7 +26,7 @@ public class ControladorRestaurante {
 
 	public void cargarMenu(String rutaArchivoPlatos, String rutaArchivoBebidas) throws IOException {
 		CargadorRestaurante cargadorRestaurante = new CargadorRestaurante();
-		cargadorRestaurante.cargarMenu(rutaArchivoPlatos, rutaArchivoBebidas, menu, menuSimple);
+		cargadorRestaurante.cargarMenu(rutaArchivoPlatos, rutaArchivoBebidas, menu, menuSimple, true);
 	}
 
 	public void crearProductoMenu(String categoria, String nombre, String precioString, String horaInicioString,
@@ -50,11 +50,6 @@ public class ControladorRestaurante {
 
 	private void recuperarInformacion() throws IOException {
 		CargadorRestaurante cargadorRestaurante = new CargadorRestaurante();
-		cargadorRestaurante.cargarMenu(archivoPlatos, archivoBebidas, menu, menuSimple);
-	}
-	
-	public void guardarRegistros() throws IOException {
-		EditorRestaurante editor = new EditorRestaurante();
-		editor.guardarRegistros(menu, archivoBebidas, archivoPlatos);
+		cargadorRestaurante.cargarMenu(archivoPlatos, archivoBebidas, menu, menuSimple, false);
 	}
 }

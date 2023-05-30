@@ -14,14 +14,18 @@ public class CargadorServicios {
 		mapaServicios.get(nombre).setPrecio(precio);
 	}
 
-	public void cargarServicios(String rutaArchivo, Map<String, Servicio> mapaServicios) throws IOException {
+	public void cargarServicios(String rutaArchivo, Map<String, Servicio> mapaServicios, String archivoServicios , boolean nuevo) throws IOException {
 		BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo));
+		EditorServicios editor = new EditorServicios();
 		String linea;
 		while ((linea = lector.readLine()) != null) {
 			String[] parametros = linea.split(";");
 			String nombre = parametros[0];
 			String precio = parametros[1];
 			anadirServicio(mapaServicios, nombre, precio);
+			if (nuevo) {
+				editor.registrarServicio(nombre, precio, archivoServicios);
+			}
 		}
 		lector.close();
 	}

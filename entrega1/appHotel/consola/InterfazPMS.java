@@ -1,7 +1,5 @@
 package consola;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JFrame;
@@ -35,7 +33,7 @@ public class InterfazPMS extends JFrame {
 
 		this.coordinadorEmpleado = new CoordinadorEmpleado(coordinadorRecepcion.getControladorHuespedes(),
 				coordinadorRecepcion.getControladorPagos(), coordinadorAdministrador.mapaServicios(),
-				coordinadorAdministrador.mapaProductosMenu());;
+				coordinadorAdministrador.mapaProductosMenu());
 
 		setTitle("Property Managament System");
 		setSize(700, 600);
@@ -48,17 +46,6 @@ public class InterfazPMS extends JFrame {
 		add(panelInicio);
 
 		autenticador.crearAutenticadores();
-		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				try {
-					guardarRegistros();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -101,13 +88,8 @@ public class InterfazPMS extends JFrame {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-	public void registrarConsumo(String categoria,String id,String referencia, String pago) {
-		coordinadorEmpleado.registrarConsumo(categoria, id, referencia, pago);
-	}
 
-	public void guardarRegistros() throws IOException {
-		coordinadorEmpleado.guardarRegistros();
-		coordinadorAdministrador.guardarRegistros();
+	public void registrarConsumo(String categoria, String id, String referencia, String pago) throws IOException {
+		coordinadorEmpleado.registrarConsumo(categoria, id, referencia, pago);
 	}
 }

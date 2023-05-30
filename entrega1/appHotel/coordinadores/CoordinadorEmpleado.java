@@ -21,7 +21,7 @@ public class CoordinadorEmpleado {
 		this.controladorPagos = controladorPagos;
 	}
 
-	public void registrarConsumo(String tipoConsumo, String idHuesped, String referencia, String pago) {
+	public void registrarConsumo(String tipoConsumo, String idHuesped, String referencia, String pago) throws IOException {
 		if (tipoConsumo.equals("Restaurante")) {
 			if (Boolean.parseBoolean(pago)) {
 				controladorPagos.pagarConsumo(idHuesped, referencia);
@@ -33,9 +33,5 @@ public class CoordinadorEmpleado {
 			}
 			controladorConsumos.crearConsumoServicio(idHuesped, referencia);
 		}
-	}
-	
-	public void guardarRegistros() throws IOException {
-		controladorConsumos.guardarRegistros();
 	}
 }
