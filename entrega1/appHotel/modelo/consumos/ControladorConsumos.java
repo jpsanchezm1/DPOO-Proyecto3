@@ -35,7 +35,7 @@ public class ControladorConsumos {
 		recuperarInformacion();
 	}
 
-	public void crearConsumoServicio(String idHuesped, String servicioString) {
+	public void crearConsumoServicio(String idHuesped, String servicioString) throws IOException {
 		Huesped huesped = controladorRegistro.getHuespedPorId(Integer.parseInt(idHuesped));
 		Integer id = controladorRegistro.getGrupoPorId(Integer.parseInt(idHuesped)).getRepresentante()
 				.getIdentificacion();
@@ -43,9 +43,11 @@ public class ControladorConsumos {
 		ConsumoServicio consumo = new ConsumoServicio(huesped, servicio);
 		mapaConsumosServicios.computeIfAbsent(id, k -> new ArrayList<>());
 		mapaConsumosServicios.get(id).add(consumo);
+		EditorConsumos editor = new EditorConsumos();
+		editor.registrarConsumo(archivoConsumosServicios, idHuesped, servicioString);
 	}
 
-	public void crearConsumoRest(String idHuesped, String productoMenu) {
+	public void crearConsumoRest(String idHuesped, String productoMenu) throws IOException {
 		Huesped huesped = controladorRegistro.getHuespedPorId(Integer.parseInt(idHuesped));
 		Integer id = controladorRegistro.getGrupoPorId(Integer.parseInt(idHuesped)).getRepresentante()
 				.getIdentificacion();
@@ -53,6 +55,8 @@ public class ControladorConsumos {
 		ConsumoRestaurante consumo = new ConsumoRestaurante(huesped, producto);
 		mapaConsumosRest.computeIfAbsent(id, k -> new ArrayList<>());
 		mapaConsumosRest.get(id).add(consumo);
+		EditorConsumos editor = new EditorConsumos();
+		editor.registrarConsumo(archivoConsumosRest, idHuesped, productoMenu);
 	}
 
 	public List<ConsumoServicio> getConsumosServicio(Integer idRepresentante) {
@@ -61,12 +65,6 @@ public class ControladorConsumos {
 
 	public List<ConsumoRestaurante> getConsumosRestaurante(Integer idRepresentante) {
 		return mapaConsumosRest.get(idRepresentante);
-	}
-
-	public void guardarRegistros() throws IOException {
-		EditorConsumos editorConsumos = new EditorConsumos();
-		editorConsumos.guardarRegistros(archivoConsumosServicios, archivoConsumosRest, mapaConsumosServicios,
-				mapaConsumosRest);
 	}
 
 	private void recuperarInformacion() throws IOException {
