@@ -1,8 +1,11 @@
 package coordinadores;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import modelo.habitaciones.ControladorHabitaciones;
+import modelo.habitaciones.Habitacion;
 import modelo.huespedes.ControladorHuespedes;
 import modelo.pagos.ControladorPagos;
 import modelo.reservas.ControladorReserva;
@@ -43,7 +46,15 @@ public class CoordinadorRecepcion {
 		System.out.println("Aún no se ha definido");
 	}
 
-	public void consultarHabitaciones() {
-		System.out.println("Aún no se ha definido");
+	public List<String> consultarHabitaciones(String fechaInicio, String fechaFin) {
+		List<Integer> ids = contrReserva.consultarHabitacionesDisponibles(fechaInicio, fechaFin);
+		ArrayList<String> habitaciones = new ArrayList<String>();
+		
+		for (Integer id : ids) {
+			Habitacion habActual = contrHabitacion.getHabitaciones().get(id);
+			habitaciones.add(habActual.toString());
+		}
+		
+		return habitaciones;
 	}
 }

@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
@@ -88,8 +90,27 @@ public class PanelReservar extends JPanel {
 		}
 	}
 
-	private void addToList(String item) {
+	public void addToList(String item) {
 		modelo.addElement(item);
+	}
+	
+	public String getFechaInicio() {
+		return fechaInicio.getText();
+	}
+	
+	public String getFechaFin() {
+		return fechaFin.getText();
+	}
+	
+	public List<Integer> getHabitacionesSeleccionadas(){
+		ArrayList<Integer> idsSelec = new ArrayList<>();
+		for (String info : listaHabitaciones.getSelectedValuesList()) {
+			int index = info.indexOf(" ");
+			String idSring = info.substring(0, index);
+			idsSelec.add(Integer.parseInt(idSring));
+		}
+		
+		return idsSelec;
 	}
 
 }
