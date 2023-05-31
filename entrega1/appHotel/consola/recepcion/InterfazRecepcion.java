@@ -2,6 +2,9 @@ package consola.recepcion;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -37,7 +40,8 @@ public class InterfazRecepcion extends JFrame {
 		dialogReservar.setTitle("Reservar habitaciones");
 		dialogReservar.setSize(700, 600);
 		dialogReservar.setLocationRelativeTo(null);
-		dialogReservar.add(new PanelReservar(this));
+		this.panelReservar = new PanelReservar(this);
+		dialogReservar.add(panelReservar);
 
 		dialogRegistrar = new JDialog();
 		dialogReservar.setTitle("Reservar habitaciones");
@@ -59,6 +63,26 @@ public class InterfazRecepcion extends JFrame {
 		dialogReservar.setVisible(false);
 		dialogRegistrar.setVisible(true);
 
+	}
+	
+	public static void main(String[] args) throws IOException {
+		InterfazRecepcion ir = new InterfazRecepcion(new InterfazPMS());
+		ir.setVisible(true);
+	}
+
+	public void consultarHabitacionesDisp() {
+		List<String> infoHabs = padre.consultarHabitacionesDisponibles(panelReservar.getFechaInicio(),panelReservar.getFechaFin());
+		for (String hab : infoHabs) {
+			panelReservar.addToList(hab);
+		}
+	}
+	
+	public void reservarHabitaciones() {
+		ArrayList<Integer> habsSeleccionadas = (ArrayList<Integer>) panelReservar.getHabitacionesSeleccionadas();
+		
+		for (int id : habsSeleccionadas) {
+			System.out.println(id);
+		}
 	}
 
 }

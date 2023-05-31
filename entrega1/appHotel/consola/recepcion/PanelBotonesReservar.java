@@ -26,7 +26,7 @@ public class PanelBotonesReservar extends JPanel implements ActionListener {
 
 		bConsultar = new JButton(RESERVAR);
 		bConsultar.addActionListener(this);
-		bConsultar.setActionCommand(CONSULTAR);
+		bConsultar.setActionCommand(RESERVAR);
 		add(bConsultar);
 
 		add(Box.createRigidArea(new Dimension(60, 50)));
@@ -44,6 +44,10 @@ public class PanelBotonesReservar extends JPanel implements ActionListener {
 
 		if (comando.equals(RESERVAR)) {
 			principalInterfazRecep.mostrarPanelRegistrar();
+			principalInterfazRecep.reservarHabitaciones();
+		}
+		else if (comando.equals(CONSULTAR)) {
+			principalInterfazRecep.consultarHabitacionesDisp();
 		}
 
 	}
