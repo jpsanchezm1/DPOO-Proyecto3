@@ -49,13 +49,12 @@ public class InterfazPMS extends JFrame {
 
 		autenticador.crearAutenticadores();
 	}
-	/*
+
 
 	public static void main(String[] args) throws IOException {
 		InterfazPMS interfaz = new InterfazPMS();
 		interfaz.setVisible(true);
 	}
-	*/
 
 	public void mostrarPanelRegistro() {
 		panelRegistro.setVisible(true);
