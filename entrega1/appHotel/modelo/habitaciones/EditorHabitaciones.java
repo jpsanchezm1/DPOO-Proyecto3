@@ -12,8 +12,8 @@ public class EditorHabitaciones {
 	public void guardarHabitacion(String infoHabitacion, String rutaArchivo) {
 
 		try (BufferedWriter editor = new BufferedWriter(new FileWriter(rutaArchivo, true))) {
-			editor.newLine();
 			editor.write(infoHabitacion);
+			editor.newLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
