@@ -20,6 +20,8 @@ public class ControladorHabitaciones {
 	public void cargarHabitaciones(String rutaArchivo) throws IOException {
 		CargadorHabitaciones cargador = new CargadorHabitaciones();
 		cargador.cargarHabitaciones(rutaArchivo, habitaciones);
+		EditorHabitaciones editorHabitaciones = new EditorHabitaciones();
+		editorHabitaciones.guardarHabitaciones(rutaArchivo, archivoHabitaciones);
 	}
 
 	public void crearHabitacion(String infoHabitacion) {
