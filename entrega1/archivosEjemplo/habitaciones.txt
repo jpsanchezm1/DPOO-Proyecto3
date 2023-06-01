@@ -1,0 +1,10 @@
+1;estandar;2;balcon,vista,aire acondicionado,TV,Voltaje AC,tomas USB-A,9 metros cuadrados,2 camas de 1.90 m
+2;suite;4;vista,cocina integrada,aire acondicionado,TV,cafetera,plancha,tomas USB-C,desayuno,20 metros cuadrados,2 camas de 2.00 m
+3;suite doble;8;balcon,vista,cocina integrada,TV,ropa de cama y tapetes hipoalergenicos,secador de pelo,desayuno,25 metros cuadrados,4 camas de 2.30 m
+4;estandar;4;balcon,vista,aire acondicionado,TV,Voltaje AC,tomas USB-A,9 metros cuadrados,3 camas de 1.90 m
+5;suite doble;3;balcon,vista,cocina integrada,TV,ropa de cama y tapetes hipoalergenicos,secador de pelo,desayuno,25 metros cuadrados,3 camas de 2.30 m
+6;estandar;3;balcon,vista,aire acondicionado,TV,Voltaje AC,tomas USB-A,9 metros cuadrados,3 camas de 1.90 m
+7;suite;3;vista,cocina integrada,aire acondicionado,TV,cafetera,plancha,tomas USB-C,desayuno,20 metros cuadrados,3 camas de 2.00 m
+8;suite doble;6;balcon,vista,cocina integrada,TV,ropa de cama y tapetes hipoalergenicos,secador de pelo,desayuno,25 metros cuadrados,3 camas de 2:30 m
+9;estandar;4;balcon,vista,aire acondicionado,TV,Voltaje AC,tomas USB-A,9 metros cuadrados,2 camas de 1.90 m
+10;suite;3;vista,cocina integrada,aire acondicionado,TV,cafetera,plancha,tomas USB-C,desayuno,20 metros cuadrados,3 camas de 2.00 m

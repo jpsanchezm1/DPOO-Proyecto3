@@ -27,21 +27,12 @@ public class ControladorHabitaciones {
 		int id = Integer.parseInt(partes[0]);
 		String tipoHabitacion = partes[1];
 		int capacidad = Integer.parseInt(partes[2]);
-		String camas = partes[3];
-		boolean balcon = partes[4].equals("si");
-		boolean vista = partes[5].equals("si");
-		boolean cocina = partes[6].equals("si");
+		String descripcion = partes[3];
 
-		Habitacion nuevaHab = new Habitacion(id, tipoHabitacion, capacidad, camas, balcon, vista, cocina);
+		Habitacion nuevaHab = new Habitacion(id, tipoHabitacion, capacidad, descripcion);
 		habitaciones.put(id, nuevaHab);
 		EditorHabitaciones editorHabitaciones = new EditorHabitaciones();
 		editorHabitaciones.guardarHabitacion(infoHabitacion, archivoHabitaciones);
-	}
-
-	// Recibe un archivo con informacion modificada de habitaciones existentes e
-	// incorpora dichas modificaciones
-	public void actualizarHabitaciones(String rutaArchivo) throws IOException {
-		cargarHabitaciones(rutaArchivo);
 	}
 
 	private void recuperarInformacion() throws IOException {
