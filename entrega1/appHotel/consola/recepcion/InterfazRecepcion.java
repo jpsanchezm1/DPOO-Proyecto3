@@ -64,11 +64,6 @@ public class InterfazRecepcion extends JFrame {
 		dialogRegistrar.setVisible(true);
 
 	}
-	
-	/*public static void main(String[] args) throws IOException {
-		InterfazRecepcion ir = new InterfazRecepcion(new InterfazPMS());
-		ir.setVisible(true);
-	}*/
 
 	public void consultarHabitacionesDisp() {
 		List<String> infoHabs = padre.consultarHabitacionesDisponibles(panelReservar.getFechaInicio(),panelReservar.getFechaFin());
