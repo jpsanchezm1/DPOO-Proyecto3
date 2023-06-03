@@ -2,7 +2,6 @@ package consola.recepcion;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,13 +16,14 @@ public class InterfazRecepcion extends JFrame {
 	private PanelOpciones panelOpciones;
 	private JDialog dialogReservar;
 	private PanelReservar panelReservar;
+	private PanelRegistroIngreso panelRegistroIngreso;
 	private PanelRegistrarSalida opcionRegistrarSalida;
 	private PanelConsultarHabitaciones opcionConsultar;
 	private JDialog dialogRegistrar;
 	private InterfazPMS padre;
 
 	public InterfazRecepcion(InterfazPMS padreI) {
-		
+
 		this.padre = padreI;
 		setLayout(new GridBagLayout());
 		setTitle("Recepcion");
@@ -35,19 +35,6 @@ public class InterfazRecepcion extends JFrame {
 
 		panelOpciones = new PanelOpciones(this);
 		add(panelOpciones);
-
-		dialogReservar = new JDialog();
-		dialogReservar.setTitle("Reservar habitaciones");
-		dialogReservar.setSize(700, 600);
-		dialogReservar.setLocationRelativeTo(null);
-		this.panelReservar = new PanelReservar(this);
-		dialogReservar.add(panelReservar);
-
-		dialogRegistrar = new JDialog();
-		dialogReservar.setTitle("Reservar habitaciones");
-		dialogReservar.setSize(700, 600);
-		dialogReservar.setLocationRelativeTo(null);
-
 		// Configuraci�n del layout
 		// setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
@@ -55,29 +42,44 @@ public class InterfazRecepcion extends JFrame {
 
 	public void mostrarPanelReservar() {
 		// TODO Auto-generated method stub
+		dialogReservar = new JDialog();
+		dialogReservar.setTitle("Reservar habitaciones");
+		dialogReservar.setSize(700, 600);
+		dialogReservar.setLocationRelativeTo(null);
+		this.panelReservar = new PanelReservar(this);
+		dialogReservar.add(panelReservar);
 		dialogReservar.setVisible(true);
 	}
 
 	public void mostrarPanelRegistrar() {
 		// TODO Auto-generated method stub
 		dialogReservar.setVisible(false);
+		dialogRegistrar = new JDialog();
+		dialogRegistrar.setTitle("Reservar habitaciones");
+		dialogRegistrar.setSize(800, 600);
+		dialogRegistrar.setLocationRelativeTo(null);
+		panelRegistroIngreso = new PanelRegistroIngreso(this);
+		dialogRegistrar.add(panelRegistroIngreso);
 		dialogRegistrar.setVisible(true);
 
 	}
 
 	public void consultarHabitacionesDisp() {
-		List<String> infoHabs = padre.consultarHabitacionesDisponibles(panelReservar.getFechaInicio(),panelReservar.getFechaFin());
+		List<String> infoHabs = padre.consultarHabitacionesDisponibles(panelReservar.getFechaInicio(),
+				panelReservar.getFechaFin());
 		for (String hab : infoHabs) {
 			panelReservar.addToList(hab);
 		}
 	}
-	
+
 	public void reservarHabitaciones() {
+		dialogRegistrar.setVisible(false);
 		ArrayList<Integer> habsSeleccionadas = (ArrayList<Integer>) panelReservar.getHabitacionesSeleccionadas();
-		
-		for (int id : habsSeleccionadas) {
-			System.out.println(id);
-		}
+		String infoRep = panelRegistroIngreso.getInfoRep();
+		List<String> infoAcomp = panelRegistroIngreso.getInfoAcompaniantes();
+		String fechaInicio = panelReservar.getFechaInicio();
+		String fechaFin = panelReservar.getFechaFin();
+		padre.reservar(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
 	}
 
 }

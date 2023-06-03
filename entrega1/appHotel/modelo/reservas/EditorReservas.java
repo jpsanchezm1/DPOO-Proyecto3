@@ -21,8 +21,8 @@ public class EditorReservas {
 			}
 			String newInfoReserva = infoReserva.substring(0, infoReserva.length() - 1);
 
-			editor.newLine();
 			editor.write(newInfoReserva);
+			editor.newLine();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

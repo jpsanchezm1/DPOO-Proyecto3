@@ -3,15 +3,17 @@ package modelo.huespedes;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ControladorHuespedes {
 
 	// guardamos los huespedes por su id
-	private HashMap<Integer, Huesped> huespedesReg;
+	private Map<Integer, Huesped> huespedesReg = new HashMap<>();
 
 	// guardamos los grupos por la id de cada huesped. Los valores son el grupo del
 	// huesped
-	private HashMap<Integer, Grupo> huespedesGruposReg;
+	private Map<Integer, Grupo> huespedesGruposReg = new HashMap<>();
 
 	private String archivoHuespedes = "./data/huespedes/huespedes.txt";
 	private String archivoGrupos = "./data/huespedes/grupos.txt";
@@ -36,10 +38,10 @@ public class ControladorHuespedes {
 		return grupo;
 	}
 
-	public void aniadirAcompanantes(ArrayList<String> infoAcompanantes, Grupo grupo) {
+	public void aniadirAcompanantes(List<String> infoAcomp, Grupo grupo) {
 		ArrayList<Huesped> acompanantes = new ArrayList<>();
 
-		for (String infoAcompanante : infoAcompanantes) {
+		for (String infoAcompanante : infoAcomp) {
 
 			String[] partes = infoAcompanante.split(";");
 
