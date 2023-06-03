@@ -206,4 +206,19 @@ public class Autenticador {
 		crearMapaRecepcionistas(rutaRecep);
 		crearMapaEmpleadosGenerales(rutaEmpleadoGen);
 	}
+
+	public boolean validarUsuarioAH(String usuario) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void registrarUsuarioAH(String nombreUsuario, String contrasena) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean validarContrasenaAH(String usuario, String contrasenia) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
