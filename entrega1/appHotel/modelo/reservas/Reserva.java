@@ -1,6 +1,7 @@
 package modelo.reservas;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reserva {
 
@@ -8,7 +9,7 @@ public class Reserva {
 	private String fechaInicio;
 	private String fechaFin;
 	private boolean activa;
-	private ArrayList<Integer> habitaciones;
+	private List<Integer> habitaciones;
 
 	public Reserva(int representante, String fechaInicio, String fechaFin) {
 		this.idRepresentante = representante;
@@ -19,12 +20,12 @@ public class Reserva {
 	}
 
 	public Reserva(int representante, String fechaInicio, String fechaFin, boolean activa,
-			ArrayList<Integer> habitaciones) {
+			List<Integer> habitaciones2) {
 		this.idRepresentante = representante;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
 		this.activa = activa;
-		this.habitaciones = habitaciones;
+		this.habitaciones = habitaciones2;
 	}
 
 	public int getRepresentante() {
@@ -47,7 +48,7 @@ public class Reserva {
 		this.activa = activa;
 	}
 
-	public ArrayList<Integer> getHabitaciones() {
+	public List<Integer> getHabitaciones() {
 		return habitaciones;
 	}
 

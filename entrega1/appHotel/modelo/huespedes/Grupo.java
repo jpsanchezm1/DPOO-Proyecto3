@@ -6,7 +6,7 @@ public class Grupo {
 
 	private Huesped representante;
 	private ArrayList<Huesped> acompanantes;
-	private int cuotaTotal;
+	private Float cuotaTotal = 0F;
 
 	public Grupo(Huesped representante) {
 		this.representante = representante;
@@ -17,7 +17,7 @@ public class Grupo {
 		return representante;
 	}
 
-	public int getCuotaTotal() {
+	public Float getCuotaTotal() {
 		return cuotaTotal;
 	}
 

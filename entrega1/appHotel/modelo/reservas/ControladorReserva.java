@@ -38,14 +38,10 @@ public class ControladorReserva {
 
 		Reserva reserva = new Reserva(idRepresentante, fechaInicio, fechaFin);
 		reservasActivas.put(idRepresentante, reserva);
-
-		EditorReservas editorReservas = new EditorReservas();
-		editorReservas.guardarReserva(idRepresentante, reserva, archivoReservas);
-
 	}
 
-	public void reservarHabitaciones(ArrayList<Integer> idsHab, Reserva reserva) {
-		for (Integer idHab : idsHab) {
+	public void reservarHabitaciones(List<Integer> list, Reserva reserva) {
+		for (Integer idHab : list) {
 
 			reserva.aniadirHabitacion(idHab);
 			habitacionesDis.remove(idHab);
@@ -59,6 +55,8 @@ public class ControladorReserva {
 				habitacionesRes.put(idHab, nuevaReservas);
 			}
 		}
+		EditorReservas editorReservas = new EditorReservas();
+		editorReservas.guardarReserva(reserva.getRepresentante(), reserva, archivoReservas);
 	}
 
 	// Recibe un rango de fechas y retorna una lista con los id's de las
@@ -73,13 +71,15 @@ public class ControladorReserva {
 			}
 		}
 
-		LocalDate fechaInicio = LocalDate.parse(SfechaInicio);
-		LocalDate fechaFin = LocalDate.parse(SfechaFin);
+		if (!SfechaInicio.equals("") && !SfechaFin.equals("")) {
+			LocalDate fechaInicio = LocalDate.parse(SfechaInicio);
+			LocalDate fechaFin = LocalDate.parse(SfechaFin);
 
-		for (Entry<Integer, ArrayList<String>> habEntry : habitacionesRes.entrySet()) {
+			for (Entry<Integer, ArrayList<String>> habEntry : habitacionesRes.entrySet()) {
 
-			if (estaDisponible(fechaInicio, fechaFin, habEntry.getValue())) {
-				habitacionesEncontradas.add(habEntry.getKey());
+				if (estaDisponible(fechaInicio, fechaFin, habEntry.getValue())) {
+					habitacionesEncontradas.add(habEntry.getKey());
+				}
 			}
 		}
 		return habitacionesEncontradas;
