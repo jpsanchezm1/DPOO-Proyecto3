@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import modelo.utilidades.Utilidades;
+import logica.Utilidades;
 
 public class CalendarioTarifasHab {
 
