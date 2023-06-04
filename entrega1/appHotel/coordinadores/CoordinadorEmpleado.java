@@ -22,25 +22,25 @@ public class CoordinadorEmpleado {
 		this.controladorPagos = controladorPagos;
 	}
 
-	public void registrarConsumo(String tipoConsumo, String idHuesped, String referencia, String pago) throws IOException {
-		System.out.println(pago);
+	public void registrarConsumo(String tipoConsumo, String idHuesped, String referencia, String pago)
+			throws IOException {
 		if (tipoConsumo.equals("Restaurante")) {
-			if (Boolean.parseBoolean(pago)) {
-				controladorPagos.pagarConsumo(idHuesped, referencia);
-			}
 			controladorConsumos.crearConsumoRest(idHuesped, referencia);
 		} else {
-			if (Boolean.parseBoolean(pago)) {
-				controladorPagos.pagarConsumo(idHuesped, referencia);
-			}
 			controladorConsumos.crearConsumoServicio(idHuesped, referencia);
 		}
+		if (Boolean.parseBoolean(pago)) {
+			controladorPagos.pagarConsumo(idHuesped, referencia);
+		} else {
+			controladorConsumos.getControladorRegistro().cargarMonto(Integer.parseInt(idHuesped),
+					controladorConsumos.consultarPrecioServicio(referencia));
+		}
 	}
-	
+
 	public List<String> getListaServicios() {
 		return controladorConsumos.getListaServicios();
 	}
-	
+
 	public List<String> getListaProductos() {
 		return controladorConsumos.getListaProductos();
 	}
