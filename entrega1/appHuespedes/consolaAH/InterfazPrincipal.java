@@ -2,6 +2,7 @@ package consolaAH;
 
 import java.awt.BorderLayout;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -80,6 +81,11 @@ public class InterfazPrincipal extends JFrame {
 
 	public List<String> consultarHabitacionesDisponibles(String fechaInicio, String fechaFin) {
 		return coordinadorRecepcion.consultarHabitaciones(fechaInicio, fechaFin);
+	}
+	
+	public void reservar(ArrayList<Integer> habsSeleccionadas, String infoRep, List<String> infoAcomp,
+			String fechaInicio, String fechaFin) {
+		coordinadorRecepcion.realizarReserva(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
 	}
 
 }
