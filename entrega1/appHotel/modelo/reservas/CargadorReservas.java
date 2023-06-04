@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CargadorReservas {
 
@@ -20,13 +21,14 @@ public class CargadorReservas {
 				String fechaInicio = partes[1];
 				String fechaFin = partes[2];
 				boolean activa = partes[3].equals("true");
-				ArrayList<Integer> habitaciones = new ArrayList<>();
-
-				String[] partesHabitaciones = partes[4].split("-");
-				for (String idHab : partesHabitaciones) {
-					habitaciones.add(Integer.parseInt(idHab));
+				List<Integer> habitaciones = new ArrayList<>();
+				
+				if (partes.length>4) {
+					String[] partesHabitaciones = partes[4].split("-");
+					for (String idHab : partesHabitaciones) {
+						habitaciones.add(Integer.parseInt(idHab));
+					}
 				}
-
 				Reserva reservaActual = new Reserva(idRepre, fechaInicio, fechaFin, activa, habitaciones);
 
 				reservas.put(idRepre, reservaActual);

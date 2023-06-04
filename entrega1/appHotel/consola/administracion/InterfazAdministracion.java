@@ -110,6 +110,11 @@ public class InterfazAdministracion extends JFrame {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	public void registrarHabitacion() {
+		PanelRegistroHabitacion panelRegistroHabitacion = new PanelRegistroHabitacion(this);
+		
+	}
 
 	public void registrarHabitacion() {
 		// TODO Auto-generated method stub

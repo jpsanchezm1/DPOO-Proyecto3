@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 public class CargadorHuespedes {
 
-	public void cargarHuespedes(String rutaArchivo, HashMap<Integer, Huesped> huespedes) throws IOException {
+	public void cargarHuespedes(String rutaArchivo, Map<Integer, Huesped> huespedesReg) throws IOException {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
 
@@ -19,11 +19,11 @@ public class CargadorHuespedes {
 				String nombre = partes[0];
 				int id = Integer.parseInt(partes[1]);
 				int numCel = Integer.parseInt(partes[2]);
-				String correo = partes[4];
+				String correo = partes[3];
 
 				Huesped huespedActual = new Huesped(nombre, id, numCel, correo);
 
-				huespedes.put(id, huespedActual);
+				huespedesReg.put(id, huespedActual);
 
 				linea = br.readLine();
 			}
@@ -32,8 +32,8 @@ public class CargadorHuespedes {
 		}
 	}
 
-	public void cargarHuespedesGrupos(String rutaArchivo, HashMap<Integer, Huesped> huespedes,
-			HashMap<Integer, Grupo> huespedesGruposReg) throws IOException {
+	public void cargarHuespedesGrupos(String rutaArchivo, Map<Integer, Huesped> huespedesReg,
+			Map<Integer, Grupo> huespedesGruposReg) throws IOException {
 		try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
 
 			String linea = br.readLine();
@@ -41,7 +41,7 @@ public class CargadorHuespedes {
 			while (linea != null) {
 				String[] partes = linea.split(";");
 				int idRepre = Integer.parseInt(partes[0]);
-				Huesped representante = huespedes.get(idRepre);
+				Huesped representante = huespedesReg.get(idRepre);
 
 				Grupo grupoActual = new Grupo(representante);
 				huespedesGruposReg.put(idRepre, grupoActual);
@@ -50,7 +50,7 @@ public class CargadorHuespedes {
 
 				String[] partesAcompanantes = partes[1].split("-");
 				for (String idAcom : partesAcompanantes) {
-					acompanantes.add(huespedes.get(Integer.parseInt(idAcom)));
+					acompanantes.add(huespedesReg.get(Integer.parseInt(idAcom)));
 					huespedesGruposReg.put(Integer.parseInt(idAcom), grupoActual);
 				}
 

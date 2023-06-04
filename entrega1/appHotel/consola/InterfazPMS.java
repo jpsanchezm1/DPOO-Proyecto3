@@ -1,6 +1,8 @@
 package consola;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -26,11 +28,12 @@ public class InterfazPMS extends JFrame {
 	private InterfazRecepcion interfazRecep;
 	private Autenticador autenticador = new Autenticador();
 	private CoordinadorAdministrador coordinadorAdministrador = new CoordinadorAdministrador();
-	private CoordinadorRecepcion coordinadorRecepcion = new CoordinadorRecepcion();
+	private CoordinadorRecepcion coordinadorRecepcion;
 	private CoordinadorEmpleado coordinadorEmpleado;
 
 	public InterfazPMS() throws IOException {
-
+		
+		this.coordinadorRecepcion = new CoordinadorRecepcion(coordinadorAdministrador.getContrTarifaHabi());
 		this.coordinadorEmpleado = new CoordinadorEmpleado(coordinadorRecepcion.getControladorHuespedes(),
 				coordinadorRecepcion.getControladorPagos(), coordinadorAdministrador.mapaServicios(),
 				coordinadorAdministrador.mapaProductosMenu());
@@ -47,6 +50,7 @@ public class InterfazPMS extends JFrame {
 
 		autenticador.crearAutenticadores();
 	}
+
 
 	public static void main(String[] args) throws IOException {
 		InterfazPMS interfaz = new InterfazPMS();
@@ -92,4 +96,15 @@ public class InterfazPMS extends JFrame {
 	public void registrarConsumo(String categoria, String id, String referencia, String pago) throws IOException {
 		coordinadorEmpleado.registrarConsumo(categoria, id, referencia, pago);
 	}
+
+	public List<String> consultarHabitacionesDisponibles(String fechaInicio, String fechaFin) {
+		return coordinadorRecepcion.consultarHabitaciones(fechaInicio, fechaFin);
+	}
+
+
+	public void reservar(ArrayList<Integer> habsSeleccionadas, String infoRep, List<String> infoAcomp,
+			String fechaInicio, String fechaFin) {
+		coordinadorRecepcion.realizarReserva(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
+	}
+	
 }
