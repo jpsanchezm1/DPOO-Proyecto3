@@ -29,7 +29,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
 		interfazAdministracion = interfaz;
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		setBackground(Color.darkGray);
+		setBackground(Color.DARK_GRAY);
 		setPreferredSize(new Dimension(700, 300));
 		setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
@@ -100,7 +100,6 @@ public class PanelOpciones extends JPanel implements ActionListener {
 			try {
 				interfazAdministracion.cargarHabitaciones();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -114,11 +113,11 @@ public class PanelOpciones extends JPanel implements ActionListener {
 		}
 
 		if (comando.equals(REGISTRAR_HABITACION)) {
-			interfazAdministracion.registrarHabitacion();
+			interfazAdministracion.mostrarRegistroHabitacion();
 		}
 
 		if (comando.equals(REGISTRAR_TARIFA)) {
-			interfazAdministracion.registrarTarifa();
+			interfazAdministracion.mostrarRegistroTarifa();
 		}
 
 		if (comando.equals(CARGAR_SERVICIOS)) {

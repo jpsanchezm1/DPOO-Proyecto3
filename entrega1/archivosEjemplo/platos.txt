@@ -1,3 +1,10 @@
-Arroz-con-pollo;4.5;08:00-20:00;True
+Arroz con pollo;4.5;08:00-20:00;True
 Ajiaco;3.4;08:00-20:00;False
-Hamburguesa-sencilla;5.6;10:00:00-22:30:00;True
+Hamburguesa sencilla;5.6;10:00:00-22:30:00;False
+Bandeja paisa;5.9;12:00-20:00;True
+Pasta pesto;6.3;10:00:00-22:30:00;True
+Sandwich;5.2;10:00:00-22:30:00;False
+Tacos al pastor;7.1;08:00-20:00;True
+Pizza;6.4;10:00:00-22:30:00;True
+Carne llanera;7.6;10:00:00-22:30:00;True
+Lechona;6.5;10:00:00-22:30:00;True

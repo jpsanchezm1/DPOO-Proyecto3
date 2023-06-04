@@ -24,6 +24,8 @@ public class ControladorTarifaHabitacion {
 	public void cargarTarifas(String rutaArchivo) throws IOException {
 		CargadorTarifaHabitacion cargadorTarifas = new CargadorTarifaHabitacion();
 		cargadorTarifas.cargarTarifas(rutaArchivo, calendarioTarifas);
+		EditorTarifasHab editorTarifasHab = new EditorTarifasHab();
+		editorTarifasHab.guardarTarifas(rutaArchivo,archivoTarifas);
 	}
 
 	// Recibe el tipo de habitacion y el rango de fechas y retorna el precio total
