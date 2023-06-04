@@ -72,4 +72,12 @@ public class ControladorConsumos {
 		cargadorConsumos.cargarConsumos(archivoConsumosServicios, archivoConsumosRest, mapaConsumosServicios,
 				mapaConsumosRest, controladorRegistro, mapaServicios, mapaProductosMenu);
 	}
+	
+	public List<String> getListaServicios() {
+		return new ArrayList<String>(mapaServicios.keySet());
+	}
+	
+	public List<String> getListaProductos() {
+		return new ArrayList<String>(mapaProductosMenu.keySet());
+	}
 }
