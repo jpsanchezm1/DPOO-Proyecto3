@@ -27,9 +27,9 @@ public class CoordinadorRecepcion {
 
 	private ControladorTarifaHabitacion controladorTarifas;
 
-	public CoordinadorRecepcion(ControladorTarifaHabitacion controladorTarifas) throws IOException {
+	public CoordinadorRecepcion() throws IOException {
 		super();
-		this.controladorTarifas = controladorTarifas;
+		this.controladorTarifas = new ControladorTarifaHabitacion();
 		this.controladorHuespedes = new ControladorHuespedes();
 		this.contrHabitacion = new ControladorHabitaciones();
 		this.contrReserva = new ControladorReserva(contrHabitacion.getHabitaciones());

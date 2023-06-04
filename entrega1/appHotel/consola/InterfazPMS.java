@@ -33,7 +33,7 @@ public class InterfazPMS extends JFrame {
 
 	public InterfazPMS() throws IOException {
 		
-		this.coordinadorRecepcion = new CoordinadorRecepcion(coordinadorAdministrador.getContrTarifaHabi());
+		this.coordinadorRecepcion = new CoordinadorRecepcion();
 		this.coordinadorEmpleado = new CoordinadorEmpleado(coordinadorRecepcion.getControladorHuespedes(),
 				coordinadorRecepcion.getControladorPagos(), coordinadorAdministrador.mapaServicios(),
 				coordinadorAdministrador.mapaProductosMenu());
