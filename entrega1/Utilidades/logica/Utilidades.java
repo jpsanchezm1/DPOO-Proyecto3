@@ -1,4 +1,4 @@
-package modelo.utilidades;
+package logica;
 
 import java.time.DayOfWeek;
 import java.util.HashMap;

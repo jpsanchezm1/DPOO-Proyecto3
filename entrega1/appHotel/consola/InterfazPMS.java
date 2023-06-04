@@ -28,11 +28,12 @@ public class InterfazPMS extends JFrame {
 	private InterfazRecepcion interfazRecep;
 	private Autenticador autenticador = new Autenticador();
 	private CoordinadorAdministrador coordinadorAdministrador = new CoordinadorAdministrador();
-	private CoordinadorRecepcion coordinadorRecepcion = new CoordinadorRecepcion();
+	private CoordinadorRecepcion coordinadorRecepcion;
 	private CoordinadorEmpleado coordinadorEmpleado;
 
 	public InterfazPMS() throws IOException {
-
+		
+		this.coordinadorRecepcion = new CoordinadorRecepcion(coordinadorAdministrador.getContrTarifaHabi());
 		this.coordinadorEmpleado = new CoordinadorEmpleado(coordinadorRecepcion.getControladorHuespedes(),
 				coordinadorRecepcion.getControladorPagos(), coordinadorAdministrador.mapaServicios(),
 				coordinadorAdministrador.mapaProductosMenu());
@@ -98,6 +99,12 @@ public class InterfazPMS extends JFrame {
 
 	public List<String> consultarHabitacionesDisponibles(String fechaInicio, String fechaFin) {
 		return coordinadorRecepcion.consultarHabitaciones(fechaInicio, fechaFin);
+	}
+
+
+	public void reservar(ArrayList<Integer> habsSeleccionadas, String infoRep, List<String> infoAcomp,
+			String fechaInicio, String fechaFin) {
+		coordinadorRecepcion.realizarReserva(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
 	}
 	
 }

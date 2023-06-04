@@ -40,22 +40,23 @@ public class CoordinadorAdministrador {
 	}
 
 	public void registrarHabitacion(String infoHabitacion) {
-		// infoHabitación es de la forma: id;tipoHabitacion;capacidad;camas;balcon;vista;cocina
+		// infoHabitación es de la forma:
+		// id;tipoHabitacion;capacidad;camas;balcon;vista;cocina
 		// ejemplo: 123;suite;3;estandar,doble;true;false;true
 		contrHab.crearHabitacion(infoHabitacion);
 	}
-	
+
 	public Map<String, Servicio> mapaServicios() {
 		return contrServicios.getMapaServicios();
 	}
-	
+
 	public Map<String, ProductoMenu> mapaProductosMenu() {
 		return contrRest.getMenuSimple();
 	}
 
 	public void registrarTarifa(String infoTarifa) {
 		// infoTarifa es de la forma: tipoHabitacion;fechaDeInicio;fechaDeFin;precio
-		// ejemplo: suite;2003-10-12;2003-11-12;24 
+		// ejemplo: suite;2003-10-12;2003-11-12;24
 		// precio puede ser float
 		// el formato de fechas es yyyy-mm-dd
 		contrTarifaHabi.configurarTarifa(infoTarifa);
@@ -63,5 +64,9 @@ public class CoordinadorAdministrador {
 
 	public void cargarServicios(String rutaArchivo) throws IOException {
 		contrServicios.cargarServicios(rutaArchivo);
+	}
+
+	public ControladorTarifaHabitacion getContrTarifaHabi() {
+		return contrTarifaHabi;
 	}
 }
