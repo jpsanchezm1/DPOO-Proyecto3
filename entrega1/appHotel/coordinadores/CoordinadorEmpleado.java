@@ -1,6 +1,7 @@
 package coordinadores;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import modelo.huespedes.ControladorHuespedes;
@@ -22,6 +23,7 @@ public class CoordinadorEmpleado {
 	}
 
 	public void registrarConsumo(String tipoConsumo, String idHuesped, String referencia, String pago) throws IOException {
+		System.out.println(pago);
 		if (tipoConsumo.equals("Restaurante")) {
 			if (Boolean.parseBoolean(pago)) {
 				controladorPagos.pagarConsumo(idHuesped, referencia);
@@ -33,5 +35,13 @@ public class CoordinadorEmpleado {
 			}
 			controladorConsumos.crearConsumoServicio(idHuesped, referencia);
 		}
+	}
+	
+	public List<String> getListaServicios() {
+		return controladorConsumos.getListaServicios();
+	}
+	
+	public List<String> getListaProductos() {
+		return controladorConsumos.getListaProductos();
 	}
 }

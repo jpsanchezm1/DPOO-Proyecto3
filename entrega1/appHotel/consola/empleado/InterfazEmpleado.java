@@ -2,20 +2,23 @@ package consola.empleado;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import consola.InterfazPMS;
 
-public class InterfazEmpleado extends JFrame implements ActionListener {
+public class InterfazEmpleado extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private PanelConsumo panelConsumo;
+	private JDialog dialogConsumo, dialogCantidades;
+	private PanelSeleccionar panelSeleccionar;
 	private PanelOpciones panelOpciones;
+	private ItemPanel itemPanel;
 	private InterfazPMS padre;
+	private String cat;
 
 	public InterfazEmpleado(InterfazPMS padreI) {
 		this.padre = padreI;
@@ -28,34 +31,41 @@ public class InterfazEmpleado extends JFrame implements ActionListener {
 		setLocationRelativeTo(null); // Centra la ventana en la pantalla
 
 		panelOpciones = new PanelOpciones(this);
-		panelConsumo = new PanelConsumo(this);
-		panelConsumo.setTitle("Registrar Consumos");
-		// panelConsumo.setSize(700, 600);
-		panelConsumo.setLocationRelativeTo(null);
 		add(panelOpciones);
-		// panelConsumo.setVisible(true);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		String comando = e.getActionCommand();
-
-		if (comando.equals("Registrar")) {
-			panelOpciones.setVisible(true);
-			String categoria = panelConsumo.categoria();
-			String pago = panelConsumo.pago();
-			String id = panelConsumo.id();
-			String referencia = panelConsumo.referencia();
-			try {
-				padre.registrarConsumo(categoria, id, referencia, pago);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
+	
+	public void panelConsumoServicio(String cat) {
+		this.cat = cat;
+		dialogConsumo = new JDialog();
+		dialogConsumo.setTitle("Registrar consumo(s)");
+		dialogConsumo.setSize(700, 600);
+		dialogConsumo.setLocationRelativeTo(null);
+		String categoria = (cat.equals("Restaurante")) ? "Productos disponibles" : "Servicios disponibles";
+		List<String> lista = (cat.equals("Restaurante")) ? padre.getProductosDisponibles() : padre.getServiciosDisponibles();
+		this.panelSeleccionar = new PanelSeleccionar(this ,categoria, lista);
+		dialogConsumo.add(panelSeleccionar);
+		dialogConsumo.setVisible(true);
 	}
-
-	public void mostrarPanelConsumo() {
-		panelConsumo.setVisible(true);
+	
+	public void mostrarItemsYCantidad() {
+		dialogConsumo.setVisible(false);
+		dialogCantidades = new JDialog();
+		dialogCantidades.setTitle("Ajustar cantidades");
+		dialogCantidades.setSize(700, 600);
+		dialogCantidades.setLocationRelativeTo(null);
+		itemPanel = new ItemPanel(panelSeleccionar.getItemsSeleccionados(), this);
+		dialogCantidades.add(itemPanel);
+		dialogCantidades.setVisible(true);
+	}
+	
+	public void realizarRegistros(String payment, String idHuesped) throws IOException {
+		dialogCantidades.setVisible(false);
+		List<List<String>> items = itemPanel.getItemList();
+		padre.registrarConsumo(cat, items, payment, idHuesped);
+	}
+	
+	public static void main(String[] args) throws IOException {
+		InterfazEmpleado interfazEmpleado = new InterfazEmpleado(new InterfazPMS());
+		interfazEmpleado.setVisible(true);
 	}
 }

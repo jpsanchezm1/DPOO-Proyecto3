@@ -93,10 +93,6 @@ public class InterfazPMS extends JFrame {
 		}
 	}
 
-	public void registrarConsumo(String categoria, String id, String referencia, String pago) throws IOException {
-		coordinadorEmpleado.registrarConsumo(categoria, id, referencia, pago);
-	}
-
 	public List<String> consultarHabitacionesDisponibles(String fechaInicio, String fechaFin) {
 		return coordinadorRecepcion.consultarHabitaciones(fechaInicio, fechaFin);
 	}
@@ -106,5 +102,23 @@ public class InterfazPMS extends JFrame {
 			String fechaInicio, String fechaFin) {
 		coordinadorRecepcion.realizarReserva(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
 	}
+
+
+	public void registrarConsumo(String categoria, List<List<String>> items, String payment, String idHuesped) throws IOException {
+		for (List<String> info : items) {
+			int i = 1;
+			while (i<Integer.parseInt(info.get(0))+1) {
+				coordinadorEmpleado.registrarConsumo(categoria, idHuesped, info.get(1), payment);
+				i++;
+			}
+		}
+	}
 	
+	public List<String> getProductosDisponibles() {
+		return coordinadorEmpleado.getListaProductos();
+	}
+	
+	public List<String> getServiciosDisponibles() {
+		return coordinadorEmpleado.getListaServicios();
+	}
 }
