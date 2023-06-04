@@ -74,5 +74,5 @@ public class InterfazHome extends JFrame{
 		InterfazHome interfaz = new InterfazHome(new InterfazPrincipal());
 		interfaz.setVisible(true);
 	}
-
+	
 }
