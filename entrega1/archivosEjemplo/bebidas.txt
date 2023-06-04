@@ -1,3 +1,8 @@
-Coca-Cola-2L;2.5;08:00-20:00;True
-Sprite-2L;2.4;08:00-20:00;True
-Limonada-1L;2.6;10:00:00-22:30:00;False
+CocaCola 2L;2.5;08:00-20:00;True
+Sprite 2L;2.4;08:00-20:00;True
+Limonada 1L;2.6;10:00:00-22:30:00;False
+Cerveza 2L;2.5;08:00-20:00;True
+Margarita;2.4;18:00-23:00;True
+Jugo de mora;2.6;10:00:00-22:30:00;False
+CocaCola Zero 2L;2.5;08:00-20:00;True
+Jugo de maracuya;2.4;08:00-20:00;True
