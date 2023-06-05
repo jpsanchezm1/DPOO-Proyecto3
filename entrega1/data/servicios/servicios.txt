@@ -1,0 +1,5 @@
+Tenis;23
+Basket;2.2
+Spa;23
+Guia turistica;150
+Gimnasio;10

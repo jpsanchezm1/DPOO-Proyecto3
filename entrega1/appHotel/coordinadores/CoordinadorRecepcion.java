@@ -27,12 +27,12 @@ public class CoordinadorRecepcion {
 
 	private ControladorTarifaHabitacion controladorTarifas;
 
-	public CoordinadorRecepcion() throws IOException {
+	public CoordinadorRecepcion(ControladorHabitaciones contrHabitacion) throws IOException {
 		super();
 		this.controladorTarifas = new ControladorTarifaHabitacion();
-		this.controladorHuespedes = new ControladorHuespedes();
-		this.contrHabitacion = new ControladorHabitaciones();
+		this.contrHabitacion = contrHabitacion;
 		this.contrReserva = new ControladorReserva(contrHabitacion.getHabitaciones());
+		this.controladorHuespedes = new ControladorHuespedes(contrReserva.getCuotasTotales());
 		this.controladorPagos = new ControladorPagos();
 	}
 
@@ -44,19 +44,20 @@ public class CoordinadorRecepcion {
 		return controladorPagos;
 	}
 
-	public void realizarReserva(ArrayList<Integer> habsSeleccionadas, String infoRep, List<String> infoAcomp,
-			String fechaInicio, String fechaFin) {
+	public void realizarReserva(List<Integer> listHabs, String infoRep, List<String> infoAcomp, String fechaInicio,
+			String fechaFin) {
 		Grupo grupo = controladorHuespedes.crearGrupo(infoRep);
 		controladorHuespedes.aniadirAcompanantes(infoAcomp, grupo); // aniade acomps al grupo
 		contrReserva.crearReserva(Integer.parseInt(infoRep.split(";")[1]), fechaInicio, fechaFin); // crea reserva
 		Reserva reserva = contrReserva.getReservaPorIdHuesped(Integer.parseInt(infoRep.split(";")[1]));
-		contrReserva.reservarHabitaciones(habsSeleccionadas, reserva);
-		for (int id : habsSeleccionadas) { // aniadir precio de reserva a monto de grupo
+		contrReserva.reservarHabitaciones(listHabs, reserva);
+		for (int id : listHabs) { // aniadir precio de reserva a monto de huesped
 			String tipo = contrHabitacion.getHabitaciones().get(id).getTipo();
 			Float precio = controladorTarifas.consultarTarifaHabitacion(tipo, fechaInicio, fechaFin);
-			grupo.sumarACuotaTotal(precio);
+			contrReserva.sumarACuotaTotal(Integer.parseInt(infoRep.split(";")[1]),precio);
+
 		}
-		System.out.println(grupo.getCuotaTotal());
+		// System.out.println(grupo.getCuotaTotal());
 	}
 
 	public void registrarSalida() {

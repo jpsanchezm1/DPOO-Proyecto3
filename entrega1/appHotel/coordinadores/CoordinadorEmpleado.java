@@ -1,6 +1,7 @@
 package coordinadores;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import modelo.huespedes.ControladorHuespedes;
@@ -21,17 +22,29 @@ public class CoordinadorEmpleado {
 		this.controladorPagos = controladorPagos;
 	}
 
-	public void registrarConsumo(String tipoConsumo, String idHuesped, String referencia, String pago) throws IOException {
+	public void registrarConsumo(String tipoConsumo, String idHuesped, String referencia, String pago)
+			throws IOException {
+		String precio = "";
 		if (tipoConsumo.equals("Restaurante")) {
-			if (Boolean.parseBoolean(pago)) {
-				controladorPagos.pagarConsumo(idHuesped, referencia);
-			}
 			controladorConsumos.crearConsumoRest(idHuesped, referencia);
+			precio = controladorConsumos.mapaProductos().get(referencia).getPrecio().toString();
 		} else {
-			if (Boolean.parseBoolean(pago)) {
-				controladorPagos.pagarConsumo(idHuesped, referencia);
-			}
 			controladorConsumos.crearConsumoServicio(idHuesped, referencia);
+			precio = controladorConsumos.mapaServicios().get(referencia).getPrecio().toString();
 		}
+		if (Boolean.parseBoolean(pago)) {
+			controladorPagos.pagarConsumo(idHuesped, referencia, precio);
+		} else {
+			controladorConsumos.getControladorRegistro().cargarMonto(Integer.parseInt(idHuesped),
+					controladorConsumos.consultarPrecioServicio(referencia));
+		}
+	}
+
+	public List<String> getListaServicios() {
+		return controladorConsumos.getListaServicios();
+	}
+
+	public List<String> getListaProductos() {
+		return controladorConsumos.getListaProductos();
 	}
 }

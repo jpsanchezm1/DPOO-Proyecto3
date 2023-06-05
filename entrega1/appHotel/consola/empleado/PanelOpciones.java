@@ -15,9 +15,10 @@ import componentes_graficos.CalendarChooser;
 public class PanelOpciones extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
-    private static final String REGISTRAR_CONSUMO = "Realizar reserva";
+    private static final String CONSUMO_SERVICIO = "Registrar consumo de un servicio";
+    private static final String CONSUMO_REST = "Registrar consumo del restaurante";
     private static final String DATE = "DATE";
-    private JButton bRegistrarConsumo, bDates;
+    private JButton bRegistrarConsumoServicio, bDates, bRegistrarConsumoRest;
     private InterfazEmpleado principalInterfazEmp;
 
     public PanelOpciones(InterfazEmpleado p) {
@@ -27,12 +28,21 @@ public class PanelOpciones extends JPanel implements ActionListener {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(Color.darkGray);
         setSize(700, 600);
+        add(Box.createRigidArea(new Dimension(60, 50)));
 
-        bRegistrarConsumo = new JButton(REGISTRAR_CONSUMO);
-        bRegistrarConsumo.addActionListener(this);
-        bRegistrarConsumo.setActionCommand(REGISTRAR_CONSUMO);
-        bRegistrarConsumo.setMaximumSize(new Dimension(300, 50));
-        add(bRegistrarConsumo);
+        bRegistrarConsumoServicio = new JButton(CONSUMO_SERVICIO);
+        bRegistrarConsumoServicio.addActionListener(this);
+        bRegistrarConsumoServicio.setActionCommand(CONSUMO_SERVICIO);
+        bRegistrarConsumoServicio.setMaximumSize(new Dimension(300, 50));
+        add(bRegistrarConsumoServicio);
+
+        add(Box.createRigidArea(new Dimension(60, 50)));
+        
+        bRegistrarConsumoRest = new JButton(CONSUMO_REST);
+        bRegistrarConsumoRest.addActionListener(this);
+        bRegistrarConsumoRest.setActionCommand(CONSUMO_REST);
+        bRegistrarConsumoRest.setMaximumSize(new Dimension(300, 50));
+        add(bRegistrarConsumoRest);
 
         add(Box.createRigidArea(new Dimension(60, 50)));
 
@@ -40,7 +50,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
         bDates.addActionListener(this);
         bDates.setActionCommand(DATE);
         bDates.setMaximumSize(new Dimension(300, 50));
-        add(bDates);
+        //add(bDates);
 
         add(Box.createRigidArea(new Dimension(60, 50)));
 
@@ -50,8 +60,11 @@ public class PanelOpciones extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String comando = e.getActionCommand();
 
-        if (comando.equals(REGISTRAR_CONSUMO)) {
-            principalInterfazEmp.mostrarPanelConsumo();
+        if (comando.equals(CONSUMO_SERVICIO)) {
+            principalInterfazEmp.panelConsumoServicio("Servicios");
+        }
+        if (comando.equals(CONSUMO_REST)) {
+        	principalInterfazEmp.panelConsumoServicio("Restaurante");
         }
         if (comando.equals(DATE)) {
             CalendarChooser c = new CalendarChooser();
