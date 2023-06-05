@@ -106,5 +106,12 @@ public class InterfazPMS extends JFrame {
 			String fechaInicio, String fechaFin) {
 		coordinadorRecepcion.realizarReserva(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
 	}
+
+
+	public boolean existeReserva(String id) {
+		
+		return coordinadorRecepcion.existeReserva(id);
+		
+	}
 	
 }
