@@ -16,11 +16,15 @@ public class Autenticador {
 
 	private String rutaArchivoRecepcionistas = "./data/usuariosSistema/archivoRecepcionistas.txt";
 
+	private String rutaArchivoHuespedes = "./data/usuariosSistema/archivoHuespedes.txt";
+
 	private HashMap<String, String> mapaAdministradores;
 
 	private HashMap<String, String> mapaRecepcionistas;
 
 	private HashMap<String, String> mapaEmpleadoGeneral;
+
+	private HashMap<String, String> mapaHuespedes;
 
 	public void registrarUsuario(String rol, String nombreUsuario, String contrasena) throws IOException {
 
@@ -35,7 +39,7 @@ public class Autenticador {
 
 			bw.close();
 			mapaAdministradores.put(nombreUsuario, contrasena);
-			
+
 		} else if (rol.equals("recepcionista")) {
 			String linea = nombreUsuario + ";" + contrasena;
 			File archivoRecepcionistas = new File(rutaArchivoRecepcionistas);
@@ -47,7 +51,7 @@ public class Autenticador {
 			bw.close();
 
 			mapaRecepcionistas.put(nombreUsuario, contrasena);
-			
+
 		} else if (rol.equals("empleadoGeneral")) {
 			String linea = nombreUsuario + ";" + contrasena;
 			File archivoEmpleadoGeneral = new File(rutaArchivoEmpleadosGenerales);
@@ -197,28 +201,75 @@ public class Autenticador {
 		br.close();
 	}
 
+	public void crearMapaEmpleadosHuespedes(String rutaHuespedes) throws IOException {
+		HashMap<String, String> mapaHuespedes = new HashMap<>();
+		File archivoEmpleadosHuespedes = new File(rutaArchivoHuespedes);
+
+		FileReader fr = new FileReader(archivoEmpleadosHuespedes);
+		BufferedReader br = new BufferedReader(fr);
+
+		String linea = br.readLine();
+
+		while (linea != null) {
+
+			String[] partes = linea.split(";");
+
+			String usuario = partes[0];
+			String contrasena = partes[1];
+
+			mapaHuespedes.put(usuario, contrasena);
+			linea = br.readLine();
+		}
+		this.mapaHuespedes = mapaHuespedes;
+		br.close();
+	}
+
 	public void crearAutenticadores() throws IOException {
 		String rutaAdmin = rutaArchivoAdministradores;
 		String rutaRecep = rutaArchivoRecepcionistas;
 		String rutaEmpleadoGen = rutaArchivoEmpleadosGenerales;
+		String rutaHuespedes = rutaArchivoHuespedes;
 
 		crearMapaAdministradores(rutaAdmin);
 		crearMapaRecepcionistas(rutaRecep);
 		crearMapaEmpleadosGenerales(rutaEmpleadoGen);
+		crearMapaEmpleadosHuespedes(rutaHuespedes);
 	}
 
 	public boolean validarUsuarioAH(String usuario) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean existe = false;
+		boolean vacio = mapaHuespedes.isEmpty();
+		if (vacio == false) {
+			if (mapaAdministradores.containsKey(usuario)) {
+				existe = true;
+			}
+		}
+		return existe;
 	}
 
-	public void registrarUsuarioAH(String nombreUsuario, String contrasena) {
-		// TODO Auto-generated method stub
-		
+	public void registrarUsuarioAH(String nombreUsuario, String contrasena) throws IOException {
+		String linea = nombreUsuario + ";" + contrasena;
+		File archivoHuespedes = new File(rutaArchivoHuespedes);
+		FileWriter fw = new FileWriter(archivoHuespedes, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+
+		bw.write(linea);
+		bw.newLine();
+
+		bw.close();
+		mapaHuespedes.put(nombreUsuario, contrasena);
 	}
 
 	public boolean validarContrasenaAH(String usuario, String contrasenia) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean existe = false;
+		String password = mapaAdministradores.get(usuario);
+		boolean match = password.equals(contrasenia);
+
+		if (match == true) {
+			existe = true;
+		} else {
+			existe = false;
+		}
+		return existe;
 	}
 }
