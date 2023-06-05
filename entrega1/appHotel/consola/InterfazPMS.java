@@ -38,12 +38,13 @@ public class InterfazPMS extends JFrame {
 		this.coordinadorEmpleado = new CoordinadorEmpleado(coordinadorRecepcion.getControladorHuespedes(),
 				coordinadorRecepcion.getControladorPagos(), coordinadorAdministrador.mapaServicios(),
 				coordinadorAdministrador.mapaProductosMenu());
-
+		coordinadorAdministrador.setConsumos(coordinadorEmpleado.getControladorConsumos());
+		
 		setTitle("Property Managament System");
 		setSize(700, 600);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		
 		panelInicio = new Inicio(this);
 		panelRegistro = new Registro(this);
 
@@ -135,5 +136,10 @@ public class InterfazPMS extends JFrame {
 	
 	public List<String> getServiciosDisponibles() {
 		return coordinadorEmpleado.getListaServicios();
+	}
+
+
+	public CoordinadorAdministrador getCoordinadorA() {
+		return coordinadorAdministrador;
 	}
 }

@@ -60,7 +60,6 @@ public class InterfazPrincipal extends JFrame {
 
 	public void registrarUsuario(String nombreUsuario, String contrasena) throws IOException {
 		autenticador.registrarUsuarioAH(nombreUsuario, contrasena);
-		iniciarSesion(nombreUsuario, contrasena);
 		dialogRegistro.dispose();
 	}
 

@@ -3,11 +3,13 @@ package coordinadores;
 import java.io.IOException;
 import java.util.Map;
 
+import consola.InterfazPMS;
+import modelo.consumos.ControladorConsumos;
 import modelo.habitaciones.ControladorHabitaciones;
-import modelo.servicios.restaurante.ControladorRestaurante;
-import modelo.servicios.restaurante.ProductoMenu;
 import modelo.servicios.ControladorServicios;
 import modelo.servicios.Servicio;
+import modelo.servicios.restaurante.ControladorRestaurante;
+import modelo.servicios.restaurante.ProductoMenu;
 import modelo.tarifas_habitaciones.ControladorTarifaHabitacion;
 
 public class CoordinadorAdministrador {
@@ -19,12 +21,18 @@ public class CoordinadorAdministrador {
 	private ControladorServicios contrServicios;
 
 	private ControladorRestaurante contrRest;
+	
+	private ControladorConsumos consumos;
 
 	public CoordinadorAdministrador() throws IOException {
 		contrHab = new ControladorHabitaciones();
 		contrTarifaHabi = new ControladorTarifaHabitacion();
 		contrServicios = new ControladorServicios();
 		contrRest = new ControladorRestaurante();
+	}
+	
+	public void setConsumos(ControladorConsumos consumos) {
+		this.consumos = consumos;
 	}
 
 	public ControladorHabitaciones getContrHab() {
@@ -37,6 +45,10 @@ public class CoordinadorAdministrador {
 
 	public void cargarTarifas(String rutaArchivo) throws IOException {
 		contrTarifaHabi.cargarTarifas(rutaArchivo);
+	}
+
+	public void ventasPorductos() {
+		consumos.ventasProductos();
 	}
 
 	public void cargarMenuRestaurante(String rutaArchivoPlatos, String rutaArchivoBebidas) throws IOException {
@@ -73,4 +85,5 @@ public class CoordinadorAdministrador {
 	public ControladorTarifaHabitacion getContrTarifaHabi() {
 		return contrTarifaHabi;
 	}
+
 }

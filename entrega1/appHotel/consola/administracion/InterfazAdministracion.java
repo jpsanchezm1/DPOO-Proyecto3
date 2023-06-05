@@ -46,7 +46,7 @@ public class InterfazAdministracion extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.DARK_GRAY);
 
-		coordAdministrador = new CoordinadorAdministrador();
+		coordAdministrador = padre.getCoordinadorA();
 		
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
 		panelPrincipal.setPreferredSize(new Dimension(750,450));
@@ -236,5 +236,9 @@ public class InterfazAdministracion extends JFrame {
 		dispose();
 		ventanaRestauranteVentas = new VentanaRestauranteVentas(this);
 		ventanaRestauranteVentas.setVisible(true);
+	}
+	
+	public void ventasConsumo() {
+		coordAdministrador.ventasPorductos();
 	}
 }

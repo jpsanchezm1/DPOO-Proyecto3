@@ -1,10 +1,13 @@
 Arroz con pollo;4.5;08:00-20:00;True
 Ajiaco;3.4;08:00-20:00;False
-Hamburguesa sencilla;5.6;10:00:00-22:30:00;False
-Bandeja paisa;5.9;12:00-20:00;True
-Pasta pesto;6.3;10:00:00-22:30:00;True
-Sandwich;5.2;10:00:00-22:30:00;False
-Tacos al pastor;7.1;08:00-20:00;True
-Pizza;6.4;10:00:00-22:30:00;True
-Carne llanera;7.6;10:00:00-22:30:00;True
-Lechona;6.5;10:00:00-22:30:00;True
+Hamburguesa sencilla;5.6;10:00:00-22:30:00;True
+Bistec con puré y espárragos;30;10:00:00-22:30:00;True
+Salmón a la plancha con eneldo y vegetales;36.4;08:00-20:00;False
+Risotto de champiñones y trufa;40.5;08:00-20:00;True
+Pollo relleno con espinacas y queso feta;34.5;08:00-20:00;False
+Pasta carbonara con panceta y parmesano;45.8;08:00-20:00;True
+Ensalada mediterránea con queso feta;40.4;08:00-20:00;True
+Sopa de mariscos con camarones y mejillones;37.5;08:00-20:00;False
+Pizza margarita con mozzarella y albahaca;49.7;08:00-20:00;True
+Lomo de cerdo glaseado con miel y mostaza;45.4;08:00-20:00;True
+Tarta de manzana con helado de vainilla;34;08:00-20:00;False
