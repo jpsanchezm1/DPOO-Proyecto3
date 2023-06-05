@@ -1,4 +1,5 @@
 Tenis;23
-TV;15
 Basket;2.2
-Tenis;23.6
+Spa;23
+Guia turistica;150
+Gimnasio;10

@@ -1,4 +1,3 @@
-tipoHabitacion;yyyy-mm-dd;yyyy-mm-dd;L-M-I-J-V-S-D;$$precio$$
 estandar;2023-03-27;2023-04-09;L-M-I-J-V;35
 estandar;2023-03-27;2023-04-09;S-D;37
 suite;2023-03-27;2023-04-09;L-M-I-J-V;37

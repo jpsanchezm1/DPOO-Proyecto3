@@ -27,7 +27,7 @@ public class InterfazHome extends JFrame{
 		contentPane.setLayout(cardLayout);
 		setTitle("Home");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(700, 600);
+		setSize(800, 600);
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setResizable(false);
 		setLocationRelativeTo(null); // Centra la ventana en la pantalla
@@ -63,11 +63,13 @@ public class InterfazHome extends JFrame{
 	}
 
 	public void reservarHabitaciones() {
+		
 		ArrayList<Integer> habsSeleccionadas = (ArrayList<Integer>) panelConsDisp.getHabitacionesSeleccionadas();
-
-		for (int id : habsSeleccionadas) {
-			System.out.println(id);
-		}
+		String infoRep = panelReservar.getInfoRep();
+		List<String> infoAcomp = panelReservar.getInfoAcompaniantes();
+		String fechaInicio = panelConsDisp.getFechaInicio();
+		String fechaFin = panelConsDisp.getFechaFin();
+		principal.reservar(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
 	}
 	
 	public static void main(String[] args) throws IOException {

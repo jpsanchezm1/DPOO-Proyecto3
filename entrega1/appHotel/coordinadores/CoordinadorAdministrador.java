@@ -27,6 +27,10 @@ public class CoordinadorAdministrador {
 		contrRest = new ControladorRestaurante();
 	}
 
+	public ControladorHabitaciones getContrHab() {
+		return contrHab;
+	}
+
 	public void cargarHabitaciones(String rutaArchivo) throws IOException {
 		contrHab.cargarHabitaciones(rutaArchivo);
 	}

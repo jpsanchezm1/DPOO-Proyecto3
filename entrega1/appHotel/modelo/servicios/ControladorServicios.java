@@ -16,7 +16,9 @@ public class ControladorServicios {
 
 	public void cargarServicios(String rutaArchivo) throws IOException {
 		CargadorServicios cargadorServicios = new CargadorServicios();
-		cargadorServicios.cargarServicios(rutaArchivo, mapaServicios, archivoServicios, true);
+		cargadorServicios.cargarServicios(rutaArchivo, mapaServicios, archivoServicios);
+		EditorServicios editor = new EditorServicios();
+		editor.registrarServicios(rutaArchivo,archivoServicios);
 	}
 
 	public void crearServicio(String nombre, String precioString) throws IOException {
@@ -24,7 +26,7 @@ public class ControladorServicios {
 		mapaServicios.computeIfAbsent(nombre, k -> new Servicio(nombre, precio));
 		mapaServicios.get(nombre).setPrecio(precio);
 		EditorServicios editor = new EditorServicios();
-		editor.registrarServicio(nombre, precioString, precioString);
+		editor.registrarServicio(nombre, precioString, archivoServicios);
 	}
 
 	public Servicio consultarServicio(String nombre) {
@@ -33,7 +35,7 @@ public class ControladorServicios {
 
 	private void recuperarInformacion() throws IOException {
 		CargadorServicios cargadorServicios = new CargadorServicios();
-		cargadorServicios.cargarServicios(archivoServicios, mapaServicios, archivoServicios, false);
+		cargadorServicios.cargarServicios(archivoServicios, mapaServicios, archivoServicios);
 	}
 
 	public Map<String, Servicio> getMapaServicios() {

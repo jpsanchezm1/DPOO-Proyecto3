@@ -6,6 +6,7 @@ public class Habitacion {
 	private String tipo;
 	private int capacidad;
 	private String descripcion;
+	private String descripcionHotel;
 
 	public Habitacion(int id, String tipo, int capacidad, String descripcion) {
 		super();
@@ -13,6 +14,7 @@ public class Habitacion {
 		this.tipo = tipo;
 		this.capacidad = capacidad;
 		this.descripcion = descripcion;
+		this.descripcionHotel = "Parqueadero pago en el hotel, Parqueadero gratuito en el hote, Piscina, Zonas húmedas, BBQ, Wifi gratis, Recepción 24 horas, Pet Friendly";
 	}
 
 	public int getId() {
@@ -28,11 +30,11 @@ public class Habitacion {
 	}
 
 	public String getDescripcion() {
-		return descripcion;
+		return "Descripcion habitacion: \n" + descripcion + "\nCaracteristicas del hotel:\n"+descripcionHotel;
 	}
 
 	@Override
-	public String toString() { 
+	public String toString() {
 		return Integer.toString(id) + " \nTipo Habitacion: " + tipo + "\n" + "Capacidad habitacion: " + capacidad;
 	}
 

@@ -24,6 +24,7 @@ public class InterfazRecepcion extends JFrame {
 	private PanelRegistrarSalida panelRegistrarSalida;
 	//private PanelConsultarHabitaciones opcionConsultar;
 	private InterfazPMS padre;
+	private List<Integer> listHabs;
 
 	public InterfazRecepcion(InterfazPMS padreI) {
 
@@ -55,7 +56,8 @@ public class InterfazRecepcion extends JFrame {
 	}
 
 	public void mostrarPanelRegistrar() {
-		
+    
+		listHabs = panelReservar.getHabitacionesSeleccionadas();
 		dialogReservar.setVisible(false);
 		dialogRegistrar = new JDialog();
 		dialogRegistrar.setTitle("Reservar habitaciones");
@@ -89,12 +91,11 @@ public class InterfazRecepcion extends JFrame {
 
 	public void reservarHabitaciones() {
 		dialogRegistrar.setVisible(false);
-		ArrayList<Integer> habsSeleccionadas = (ArrayList<Integer>) panelReservar.getHabitacionesSeleccionadas();
 		String infoRep = panelRegistroIngreso.getInfoRep();
 		List<String> infoAcomp = panelRegistroIngreso.getInfoAcompaniantes();
 		String fechaInicio = panelReservar.getFechaInicio();
 		String fechaFin = panelReservar.getFechaFin();
-		padre.reservar(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
+		padre.reservar(listHabs, infoRep, infoAcomp, fechaInicio, fechaFin);
 	}
 	
 	public static void main(String[] args) throws IOException {

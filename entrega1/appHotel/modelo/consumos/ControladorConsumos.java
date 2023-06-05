@@ -1,6 +1,7 @@
 package modelo.consumos;
 
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,29 +35,29 @@ public class ControladorConsumos {
 		this.mapaServicios = mapaServicios;
 		recuperarInformacion();
 	}
+	
+	public ControladorHuespedes getControladorRegistro() {
+		return controladorRegistro;
+	}
 
 	public void crearConsumoServicio(String idHuesped, String servicioString) throws IOException {
 		Huesped huesped = controladorRegistro.getHuespedPorId(Integer.parseInt(idHuesped));
-		Integer id = controladorRegistro.getGrupoPorId(Integer.parseInt(idHuesped)).getRepresentante()
-				.getIdentificacion();
 		Servicio servicio = mapaServicios.get(servicioString);
 		ConsumoServicio consumo = new ConsumoServicio(huesped, servicio);
-		mapaConsumosServicios.computeIfAbsent(id, k -> new ArrayList<>());
-		mapaConsumosServicios.get(id).add(consumo);
+		mapaConsumosServicios.computeIfAbsent(Integer.parseInt(idHuesped), k -> new ArrayList<>());
+		mapaConsumosServicios.get(Integer.parseInt(idHuesped)).add(consumo);
 		EditorConsumos editor = new EditorConsumos();
-		editor.registrarConsumo(archivoConsumosServicios, idHuesped, servicioString);
+		editor.registrarConsumo(archivoConsumosServicios, idHuesped, servicioString, servicio.getPrecio().toString(), LocalTime.now().toString());
 	}
 
 	public void crearConsumoRest(String idHuesped, String productoMenu) throws IOException {
 		Huesped huesped = controladorRegistro.getHuespedPorId(Integer.parseInt(idHuesped));
-		Integer id = controladorRegistro.getGrupoPorId(Integer.parseInt(idHuesped)).getRepresentante()
-				.getIdentificacion();
 		ProductoMenu producto = mapaProductosMenu.get(productoMenu);
 		ConsumoRestaurante consumo = new ConsumoRestaurante(huesped, producto);
-		mapaConsumosRest.computeIfAbsent(id, k -> new ArrayList<>());
-		mapaConsumosRest.get(id).add(consumo);
+		mapaConsumosRest.computeIfAbsent(Integer.parseInt(idHuesped), k -> new ArrayList<>());
+		mapaConsumosRest.get(Integer.parseInt(idHuesped)).add(consumo);
 		EditorConsumos editor = new EditorConsumos();
-		editor.registrarConsumo(archivoConsumosRest, idHuesped, productoMenu);
+		editor.registrarConsumo(archivoConsumosRest, idHuesped, productoMenu, producto.getPrecio().toString(), LocalTime.now().toString());
 	}
 
 	public List<ConsumoServicio> getConsumosServicio(Integer idRepresentante) {
@@ -71,5 +72,29 @@ public class ControladorConsumos {
 		CargadorConsumos cargadorConsumos = new CargadorConsumos();
 		cargadorConsumos.cargarConsumos(archivoConsumosServicios, archivoConsumosRest, mapaConsumosServicios,
 				mapaConsumosRest, controladorRegistro, mapaServicios, mapaProductosMenu);
+	}
+	
+	public List<String> getListaServicios() {
+		return new ArrayList<String>(mapaServicios.keySet());
+	}
+	
+	public List<String> getListaProductos() {
+		return new ArrayList<String>(mapaProductosMenu.keySet());
+	}
+	
+	public Float consultarPrecioServicio(String nombre) {
+		return mapaServicios.get(nombre).getPrecio();
+	}
+	
+	public Float consultarPrecioProducto(String nombre) {
+		return mapaProductosMenu.get(nombre).getPrecio();
+	}
+	
+	public Map<String, ProductoMenu> mapaProductos() {
+		return mapaProductosMenu;
+	}
+	
+	public Map<String, Servicio> mapaServicios() {
+		return mapaServicios;
 	}
 }
