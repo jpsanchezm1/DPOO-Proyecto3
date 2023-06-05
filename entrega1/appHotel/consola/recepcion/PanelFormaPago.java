@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.Principal;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -14,6 +15,8 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import com.toedter.calendar.IDateEditor;
 
 public class PanelFormaPago extends JPanel implements ActionListener{
 	
@@ -24,9 +27,11 @@ public class PanelFormaPago extends JPanel implements ActionListener{
 	private JButton bTarjeta = new JButton(TARJETA);
 	private JPanel padre;
 	private CardLayout clPadre;
+	private PanelRegistrarSalida panelRegistrarSalida;
 	
-	public PanelFormaPago(JPanel padre,CardLayout p) {
+	public PanelFormaPago(PanelRegistrarSalida pRS, JPanel padre,CardLayout p) {
 		
+		panelRegistrarSalida = pRS;
 		this.padre = padre;
 		clPadre = p;
 		
@@ -64,6 +69,7 @@ public class PanelFormaPago extends JPanel implements ActionListener{
 		String comando = e.getActionCommand();
 		
 		if(comando.equals(EFECTIVO)) {
+			panelRegistrarSalida.pagarReservaEfectivo();
 			JOptionPane.showConfirmDialog(this, "Se ha realizado el pago con exito","",JOptionPane.DEFAULT_OPTION);
 			
 		}

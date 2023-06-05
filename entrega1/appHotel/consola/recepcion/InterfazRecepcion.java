@@ -108,4 +108,10 @@ public class InterfazRecepcion extends JFrame {
 		
 	}
 
+	public void pagarReservaEfectivo(String id) {
+		
+		padre.pagarReservaEfectivo(Integer.parseInt(id));
+		
+	}
+
 }

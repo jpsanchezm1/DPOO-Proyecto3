@@ -82,4 +82,9 @@ public class CoordinadorRecepcion {
 		else {return true;}
 		
 	}
+
+	public void pagarReservaEfectivo(int id) {
+		
+		
+	}
 }

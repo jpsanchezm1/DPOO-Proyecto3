@@ -55,7 +55,7 @@ public class PanelRegistrarSalida extends JPanel implements ActionListener{
 		CardLayout cl = new CardLayout();
 		JPanel panelCentro = new JPanel(cl);
 		
-		PanelFormaPago panelFormaPago = new PanelFormaPago(panelCentro,cl);
+		PanelFormaPago panelFormaPago = new PanelFormaPago(this,panelCentro,cl);
 		panelPagarReserva = new PanelPagarReserva();
 		
 		panelCentro.add(panelFormaPago, "Forma de pago");
@@ -81,6 +81,12 @@ public class PanelRegistrarSalida extends JPanel implements ActionListener{
 		else if (comando.equals(VOLVER)) {
 			
 		}
+		
+	}
+
+	public void pagarReservaEfectivo() {
+		
+		principal.pagarReservaEfectivo(id.getText());
 		
 	}
 

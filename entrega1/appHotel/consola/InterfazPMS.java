@@ -113,5 +113,12 @@ public class InterfazPMS extends JFrame {
 		return coordinadorRecepcion.existeReserva(id);
 		
 	}
+
+
+	public void pagarReservaEfectivo(int id) {
+		
+		coordinadorRecepcion.pagarReservaEfectivo(id);
+		
+	}
 	
 }
