@@ -54,10 +54,7 @@ public class CargadorHuespedes {
 					huespedesGruposReg.put(Integer.parseInt(idAcom), grupoActual);
 				}
 
-				Float cuotaTotal = Float.parseFloat(partes[2]);
-
 				grupoActual.aniadirAcompanantes(acompanantes);
-				grupoActual.sumarACuotaTotal(cuotaTotal);
 
 				linea = br.readLine();
 			}

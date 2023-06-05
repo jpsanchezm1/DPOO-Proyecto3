@@ -30,9 +30,9 @@ public class CoordinadorRecepcion {
 	public CoordinadorRecepcion(ControladorHabitaciones contrHabitacion) throws IOException {
 		super();
 		this.controladorTarifas = new ControladorTarifaHabitacion();
-		this.controladorHuespedes = new ControladorHuespedes();
 		this.contrHabitacion = contrHabitacion;
 		this.contrReserva = new ControladorReserva(contrHabitacion.getHabitaciones());
+		this.controladorHuespedes = new ControladorHuespedes(contrReserva.getCuotasTotales());
 		this.controladorPagos = new ControladorPagos();
 	}
 
@@ -51,10 +51,10 @@ public class CoordinadorRecepcion {
 		contrReserva.crearReserva(Integer.parseInt(infoRep.split(";")[1]), fechaInicio, fechaFin); // crea reserva
 		Reserva reserva = contrReserva.getReservaPorIdHuesped(Integer.parseInt(infoRep.split(";")[1]));
 		contrReserva.reservarHabitaciones(listHabs, reserva);
-		for (int id : listHabs) { // aniadir precio de reserva a monto de grupo
+		for (int id : listHabs) { // aniadir precio de reserva a monto de huesped
 			String tipo = contrHabitacion.getHabitaciones().get(id).getTipo();
 			Float precio = controladorTarifas.consultarTarifaHabitacion(tipo, fechaInicio, fechaFin);
-			grupo.sumarACuotaTotal(precio);
+			contrReserva.sumarACuotaTotal(Integer.parseInt(infoRep.split(";")[1]),precio);
 
 		}
 		// System.out.println(grupo.getCuotaTotal());
