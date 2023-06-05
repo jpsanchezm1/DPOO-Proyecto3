@@ -15,6 +15,7 @@ import consolaAH.inicioAH.PanelInicio;
 import consolaAH.inicioAH.PanelRegistro;
 import coordinadores.CoordinadorRecepcion;
 import modelo.autenticador.Autenticador;
+import modelo.habitaciones.ControladorHabitaciones;
 
 public class InterfazPrincipal extends JFrame {
 
