@@ -89,4 +89,12 @@ public class ControladorConsumos {
 	public Float consultarPrecioProducto(String nombre) {
 		return mapaProductosMenu.get(nombre).getPrecio();
 	}
+	
+	public Map<String, ProductoMenu> mapaProductos() {
+		return mapaProductosMenu;
+	}
+	
+	public Map<String, Servicio> mapaServicios() {
+		return mapaServicios;
+	}
 }
