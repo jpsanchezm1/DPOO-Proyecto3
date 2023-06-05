@@ -18,27 +18,24 @@ public class EditorHuespedes {
 		}
 	}
 
-	public void guardarGrupos(Map<Integer, Grupo> huespedesGruposReg, String rutaArchivo) {
-		try (BufferedWriter editor = new BufferedWriter(new FileWriter(rutaArchivo));) {
+	public void guardarGrupos(Grupo grupo, String rutaArchivo) {
+		try (BufferedWriter editor = new BufferedWriter(new FileWriter(rutaArchivo, true));) {
 			ArrayList<Integer> representantesGuardados = new ArrayList<>();
 
-			for (Grupo grupo : huespedesGruposReg.values()) {
-				int idRepre = grupo.getRepresentante().getIdentificacion();
-				if (!representantesGuardados.contains(idRepre)) {
-					String infoGrupo = "" + idRepre;
-					infoGrupo += ";";
+			int idRepre = grupo.getRepresentante().getIdentificacion();
+			if (!representantesGuardados.contains(idRepre)) {
+				String infoGrupo = "" + idRepre;
+				infoGrupo += ";";
 
-					for (Huesped acompanante : grupo.getAcompanantes()) {
-						infoGrupo += acompanante.getIdentificacion() + "-";
-					}
-					String nuevaInfoGrupo = infoGrupo.substring(0, infoGrupo.length() - 1);
-
-					nuevaInfoGrupo += ";" + grupo.getCuotaTotal();
-
-					editor.newLine();
-					editor.write(nuevaInfoGrupo);
-					representantesGuardados.add(idRepre);
+				for (Huesped acompanante : grupo.getAcompanantes()) {
+					infoGrupo += acompanante.getIdentificacion() + "-";
 				}
+				String nuevaInfoGrupo = infoGrupo.substring(0, infoGrupo.length() - 1);
+
+				editor.write(nuevaInfoGrupo);
+				representantesGuardados.add(idRepre);
+				editor.newLine();
+
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

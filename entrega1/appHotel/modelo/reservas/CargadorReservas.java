@@ -22,8 +22,8 @@ public class CargadorReservas {
 				String fechaFin = partes[2];
 				boolean activa = partes[3].equals("true");
 				List<Integer> habitaciones = new ArrayList<>();
-				
-				if (partes.length>4) {
+
+				if (partes.length > 4) {
 					String[] partesHabitaciones = partes[4].split("-");
 					for (String idHab : partesHabitaciones) {
 						habitaciones.add(Integer.parseInt(idHab));
