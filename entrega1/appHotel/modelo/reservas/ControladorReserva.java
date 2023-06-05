@@ -108,7 +108,21 @@ public class ControladorReserva {
 		cargadorReservas.cargarReservas(archivoReservas, reservasActivas);
 
 		for (Reserva reserva : reservasActivas.values()) {
-			reservarHabitaciones(reserva.getHabitaciones(), reserva);
+			recuperarReservas(reserva.getHabitaciones(), reserva);
+		}
+	}
+
+	private void recuperarReservas(List<Integer> list, Reserva reserva) {
+		for (Integer idHab : list) {
+
+			String rangoFecha = reserva.getFechaInicio() + ";" + reserva.getFechaFin();
+			if (habitacionesRes.containsKey(idHab)) {
+				habitacionesRes.get(idHab).add(rangoFecha);
+			} else {
+				ArrayList<String> nuevaReservas = new ArrayList<>();
+				nuevaReservas.add(rangoFecha);
+				habitacionesRes.put(idHab, nuevaReservas);
+			}
 		}
 	}
 
