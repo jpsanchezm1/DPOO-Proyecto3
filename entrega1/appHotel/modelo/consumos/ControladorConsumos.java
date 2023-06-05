@@ -1,6 +1,7 @@
 package modelo.consumos;
 
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +47,7 @@ public class ControladorConsumos {
 		mapaConsumosServicios.computeIfAbsent(Integer.parseInt(idHuesped), k -> new ArrayList<>());
 		mapaConsumosServicios.get(Integer.parseInt(idHuesped)).add(consumo);
 		EditorConsumos editor = new EditorConsumos();
-		editor.registrarConsumo(archivoConsumosServicios, idHuesped, servicioString);
+		editor.registrarConsumo(archivoConsumosServicios, idHuesped, servicioString, servicio.getPrecio().toString(), LocalTime.now().toString());
 	}
 
 	public void crearConsumoRest(String idHuesped, String productoMenu) throws IOException {
@@ -56,7 +57,7 @@ public class ControladorConsumos {
 		mapaConsumosRest.computeIfAbsent(Integer.parseInt(idHuesped), k -> new ArrayList<>());
 		mapaConsumosRest.get(Integer.parseInt(idHuesped)).add(consumo);
 		EditorConsumos editor = new EditorConsumos();
-		editor.registrarConsumo(archivoConsumosRest, idHuesped, productoMenu);
+		editor.registrarConsumo(archivoConsumosRest, idHuesped, productoMenu, producto.getPrecio().toString(), LocalTime.now().toString());
 	}
 
 	public List<ConsumoServicio> getConsumosServicio(Integer idRepresentante) {
