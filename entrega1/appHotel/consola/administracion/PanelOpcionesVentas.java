@@ -95,8 +95,31 @@ public class PanelOpcionesVentas extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		String comando = e.getActionCommand();
 		
+		if (comando.equals(VENTAS_PRODUCTO)) {
+			interfazAdministracion.ventasConsumo();
+		}
+
+		if (comando.equals(FACTURAS_TIEMPO)) {
+			//interfazAdministracion.cargarMenu();
+		}
+
+		if (comando.equals(RES_HAB)) {
+			//interfazAdministracion.mostrarRegistroHabitacion();
+		}
+
+		if (comando.equals(CONSUMOS_TIEMPO)) {
+			//interfazAdministracion.mostrarRegistroTarifa();
+		}
+
+		if (comando.equals(RES_SERV)) {
+			//interfazAdministracion.cargarServicios();
+		}
+		
+		if (comando.equals(PRODUCTO)) {
+			//interfazAdministracion.mostrarVentanaRestauranteVentas();
+		}
 	}
 
 }

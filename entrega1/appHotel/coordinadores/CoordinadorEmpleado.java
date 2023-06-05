@@ -47,4 +47,8 @@ public class CoordinadorEmpleado {
 	public List<String> getListaProductos() {
 		return controladorConsumos.getListaProductos();
 	}
+	
+	public ControladorConsumos getControladorConsumos() {
+		return controladorConsumos;
+	}
 }

@@ -1,11 +1,19 @@
 package modelo.consumos;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.SwingUtilities;
+
+import org.knowm.xchart.CategoryChart;
+import org.knowm.xchart.CategoryChartBuilder;
+import org.knowm.xchart.SwingWrapper;
 
 import modelo.huespedes.ControladorHuespedes;
 import modelo.huespedes.Huesped;
@@ -97,4 +105,48 @@ public class ControladorConsumos {
 	public Map<String, Servicio> mapaServicios() {
 		return mapaServicios;
 	}
+
+	public void ventasProductos() {
+		Map<String, Integer> productos = new HashMap<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoConsumosRest))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(";");
+                String producto = partes[1];
+                productos.put(producto, productos.getOrDefault(producto, 0) + 1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+   
+        java.util.List<String> categorias = new java.util.ArrayList<>();
+        java.util.List<Integer> cantidades = new java.util.ArrayList<>();
+
+       
+        for (Map.Entry<String, Integer> entry : productos.entrySet()) {
+            categorias.add(entry.getKey());
+            cantidades.add(entry.getValue());
+        }
+        
+        CategoryChart chart = new CategoryChartBuilder()
+                .width(800)
+                .height(600)
+                .title("Histograma de Productos")
+                .xAxisTitle("Producto")
+                .yAxisTitle("Cantidad")
+                .build();
+
+        chart.getStyler().setLegendVisible(false);
+        chart.getStyler().setXAxisLabelRotation(45);
+
+        chart.addSeries("Cantidad", categorias, cantidades);
+        
+        Thread chartThread = new Thread(() -> {
+            new SwingWrapper<>(chart).displayChart();
+        });
+        chartThread.start();
+	}
+
 }
