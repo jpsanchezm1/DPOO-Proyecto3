@@ -2,6 +2,7 @@ package consola.recepcion;
 
 import java.awt.Color;
 import java.awt.GridBagLayout;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import consola.InterfazPMS;
+import modelo.reservas.ControladorReserva;
 
 public class InterfazRecepcion extends JFrame {
 
@@ -16,10 +18,11 @@ public class InterfazRecepcion extends JFrame {
 	private PanelOpciones panelOpciones;
 	private JDialog dialogReservar;
 	private PanelReservar panelReservar;
-	private PanelRegistroIngreso panelRegistroIngreso;
-	private PanelRegistrarSalida opcionRegistrarSalida;
-	private PanelConsultarHabitaciones opcionConsultar;
 	private JDialog dialogRegistrar;
+	private PanelRegistroIngreso panelRegistroIngreso;
+	private JDialog dialogRegistrarSalida;
+	private PanelRegistrarSalida panelRegistrarSalida;
+	//private PanelConsultarHabitaciones opcionConsultar;
 	private InterfazPMS padre;
 	private List<Integer> listHabs;
 
@@ -42,18 +45,18 @@ public class InterfazRecepcion extends JFrame {
 	}
 
 	public void mostrarPanelReservar() {
-		// TODO Auto-generated method stub
+		
 		dialogReservar = new JDialog();
 		dialogReservar.setTitle("Reservar habitaciones");
 		dialogReservar.setSize(700, 600);
 		dialogReservar.setLocationRelativeTo(null);
-		this.panelReservar = new PanelReservar(this);
+		panelReservar = new PanelReservar(this);
 		dialogReservar.add(panelReservar);
 		dialogReservar.setVisible(true);
 	}
 
 	public void mostrarPanelRegistrar() {
-		// TODO Auto-generated method stub
+    
 		listHabs = panelReservar.getHabitacionesSeleccionadas();
 		dialogReservar.setVisible(false);
 		dialogRegistrar = new JDialog();
@@ -64,6 +67,18 @@ public class InterfazRecepcion extends JFrame {
 		dialogRegistrar.add(panelRegistroIngreso);
 		dialogRegistrar.setVisible(true);
 
+	}
+	
+	public void mostrarPanelRegistrarSalida() {
+		
+		dialogRegistrarSalida = new JDialog();
+		dialogRegistrarSalida.setTitle("Registrar Salida");
+		dialogRegistrarSalida.setSize(700, 600);
+		dialogRegistrarSalida.setLocationRelativeTo(null);
+		panelRegistrarSalida = new PanelRegistrarSalida(this);
+		dialogRegistrarSalida.add(panelRegistrarSalida);
+		dialogRegistrarSalida.setVisible(true);
+		
 	}
 
 	public void consultarHabitacionesDisp() {
@@ -81,6 +96,23 @@ public class InterfazRecepcion extends JFrame {
 		String fechaInicio = panelReservar.getFechaInicio();
 		String fechaFin = panelReservar.getFechaFin();
 		padre.reservar(listHabs, infoRep, infoAcomp, fechaInicio, fechaFin);
+	}
+	
+	public static void main(String[] args) throws IOException {
+		InterfazRecepcion interfaz = new InterfazRecepcion(new InterfazPMS());
+		interfaz.setVisible(true);
+	}
+
+	public boolean existeReserva(String id) {
+		
+		return padre.existeReserva(id);
+		
+	}
+
+	public void pagarReservaEfectivo(String id) {
+		
+		padre.pagarReservaEfectivo(Integer.parseInt(id));
+		
 	}
 
 }

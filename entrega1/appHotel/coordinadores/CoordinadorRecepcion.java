@@ -75,4 +75,17 @@ public class CoordinadorRecepcion {
 
 		return habitaciones;
 	}
+
+	public boolean existeReserva(String id) {
+		
+		Reserva reserva = contrReserva.getReservaPorIdHuesped(Integer.parseInt(id));
+		if(reserva != null) {return false;}
+		else {return true;}
+		
+	}
+
+	public void pagarReservaEfectivo(int id) {
+		
+		
+	}
 }

@@ -44,8 +44,7 @@ public class PanelBotonesReservar extends JPanel implements ActionListener {
 
 		if (comando.equals(RESERVAR)) {
 			principalInterfazRecep.mostrarPanelRegistrar();
-		}
-		else if (comando.equals(CONSULTAR)) {
+		} else if (comando.equals(CONSULTAR)) {
 			principalInterfazRecep.consultarHabitacionesDisp();
 		}
 
