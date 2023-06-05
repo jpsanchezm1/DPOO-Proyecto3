@@ -25,7 +25,7 @@ public class InterfazPrincipal extends JFrame {
 	private PanelRegistro panelRegistro;
 	private InterfazHome home;
 	private Autenticador autenticador = new Autenticador();
-	private CoordinadorRecepcion coordinadorRecepcion = new CoordinadorRecepcion();
+	private CoordinadorRecepcion coordinadorRecepcion = new CoordinadorRecepcion(new ControladorHabitaciones());
 
 	public InterfazPrincipal() throws IOException {
 
