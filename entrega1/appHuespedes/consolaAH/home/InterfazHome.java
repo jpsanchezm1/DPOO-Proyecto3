@@ -71,10 +71,4 @@ public class InterfazHome extends JFrame{
 		String fechaFin = panelConsDisp.getFechaFin();
 		principal.reservar(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
 	}
-	
-	public static void main(String[] args) throws IOException {
-		InterfazHome interfaz = new InterfazHome(new InterfazPrincipal());
-		interfaz.setVisible(true);
-	}
-	
 }
