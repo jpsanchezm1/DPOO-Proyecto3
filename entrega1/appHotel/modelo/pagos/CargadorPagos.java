@@ -14,8 +14,9 @@ public class CargadorPagos {
 		BufferedReader lector = new BufferedReader(new FileReader(archivoPagos));
 		String linea;
 		while ((linea = lector.readLine()) != null) {
-			if (linea.contains(":")) {
-				String[] partes = linea.split(":");
+			if (linea.contains("/")) {
+				String[] partes = linea.split("/");
+				System.out.println(partes[0]);
 				Pago pago = new Pago(Integer.parseInt(partes[0]), partes[1], LocalTime.parse(partes[2]));
 				pagosDeReserva.put(linea, pago);
 			} else {

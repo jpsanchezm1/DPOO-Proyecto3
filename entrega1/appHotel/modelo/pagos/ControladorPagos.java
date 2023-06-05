@@ -35,7 +35,7 @@ public class ControladorPagos {
 		Pago pago = new Pago(id, referencia, tiempoActual);
 		pagosDeReserva.put(referencia, pago);
 		EditorPagos editorPagos = new EditorPagos();
-		String infoPago = id.toString() + ":" + referencia + ":" + tiempoActual.toString();
+		String infoPago = id.toString() + "/" + referencia + "/" + tiempoActual.toString();
 		editorPagos.registarPago(archivoPagos, infoPago);
 	}
 

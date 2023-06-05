@@ -34,6 +34,10 @@ public class ControladorConsumos {
 		this.mapaServicios = mapaServicios;
 		recuperarInformacion();
 	}
+	
+	public ControladorHuespedes getControladorRegistro() {
+		return controladorRegistro;
+	}
 
 	public void crearConsumoServicio(String idHuesped, String servicioString) throws IOException {
 		Huesped huesped = controladorRegistro.getHuespedPorId(Integer.parseInt(idHuesped));
@@ -71,5 +75,21 @@ public class ControladorConsumos {
 		CargadorConsumos cargadorConsumos = new CargadorConsumos();
 		cargadorConsumos.cargarConsumos(archivoConsumosServicios, archivoConsumosRest, mapaConsumosServicios,
 				mapaConsumosRest, controladorRegistro, mapaServicios, mapaProductosMenu);
+	}
+	
+	public List<String> getListaServicios() {
+		return new ArrayList<String>(mapaServicios.keySet());
+	}
+	
+	public List<String> getListaProductos() {
+		return new ArrayList<String>(mapaProductosMenu.keySet());
+	}
+	
+	public Float consultarPrecioServicio(String nombre) {
+		return mapaServicios.get(nombre).getPrecio();
+	}
+	
+	public Float consultarPrecioProducto(String nombre) {
+		return mapaProductosMenu.get(nombre).getPrecio();
 	}
 }
