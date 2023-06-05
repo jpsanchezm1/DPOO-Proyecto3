@@ -13,6 +13,8 @@ public class ControladorPagos {
 	private Map<String, Pago> pagosDeReserva = new HashMap<>(); // referencia de la reserva, pago
 
 	private String archivoPagos = "./data/consumos/pagos.txt";
+	
+	private String archivoPagosReservas = "./data/consumos/pagosReserva.txt";
 
 	public ControladorPagos() throws IOException {
 		recuperarInformacion();
@@ -35,12 +37,13 @@ public class ControladorPagos {
 		Pago pago = new Pago(id, referencia, tiempoActual);
 		pagosDeReserva.put(referencia, pago);
 		EditorPagos editorPagos = new EditorPagos();
-		String infoPago = id.toString() + "/" + referencia + "/" + tiempoActual.toString();
-		editorPagos.registarPago(archivoPagos, infoPago);
+		String infoPago = id.toString() + ";" + referencia + ";" + tiempoActual.toString();
+		editorPagos.registarPago(archivoPagosReservas, infoPago);
 	}
 
 	private void recuperarInformacion() throws IOException {
 		CargadorPagos cargadorPagos = new CargadorPagos();
-		cargadorPagos.cargarPagos(archivoPagos, pagosPorHuesped, pagosDeReserva);
+		cargadorPagos.cargarPagosConsumos(archivoPagos, pagosPorHuesped);
+		cargadorPagos.cargarPagosReserva(archivoPagosReservas, pagosDeReserva);
 	}
 }
