@@ -25,12 +25,17 @@ public class ControladorReserva {
 	// los rangos son de la forma fechaInicio;fechaFin
 	private HashMap<Integer, ArrayList<String>> habitacionesRes;
 
+	// guardamos por id las cuotas totales de los representantes
+	private HashMap<Integer, Float> cuotasTotales;
+
 	private String archivoReservas = "./data/reservas/reservas.txt";
+	private String archivoCuotas = "./data/reservas/cuotasTotales.txt";
 
 	public ControladorReserva(Map<Integer, Habitacion> inventario) throws IOException {
 		habitacionesDis = inventario.keySet();
 		reservasActivas = new HashMap<>();
 		habitacionesRes = new HashMap<>();
+		cuotasTotales = new HashMap<>();
 		recuperarInformacion();
 	}
 
@@ -124,6 +129,20 @@ public class ControladorReserva {
 				habitacionesRes.put(idHab, nuevaReservas);
 			}
 		}
+	}
+
+	public void sumarACuotaTotal(int id, float monto) {
+
+		Float cuotaTotal = cuotasTotales.get(id);
+		cuotaTotal += monto;
+
+		EditorReservas editorReservas = new EditorReservas();
+		editorReservas.guardarCuotaTotal(id, cuotaTotal, archivoCuotas);
+
+	}
+
+	public Map<Integer, Float> getCuotasTotales() {
+		return cuotasTotales;
 	}
 
 }
