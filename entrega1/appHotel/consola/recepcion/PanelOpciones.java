@@ -18,7 +18,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
 	private static final String CONSULTAR = "Consultar habitaciones";
 	private JButton bReservar;
 	private JButton bRegitrarSalida;
-	private JButton bConsultarHabs;
+	//private JButton bConsultarHabs;
 	private InterfazRecepcion principalInterfazRecep;
 
 	public PanelOpciones(InterfazRecepcion p) {
@@ -44,13 +44,15 @@ public class PanelOpciones extends JPanel implements ActionListener {
 		add(bRegitrarSalida);
 
 		add(Box.createRigidArea(new Dimension(60, 50)));
-
+		
+		/*
 		bConsultarHabs = new JButton(CONSULTAR);
 		bConsultarHabs.addActionListener(this);
 		bConsultarHabs.setActionCommand(CONSULTAR);
 		bConsultarHabs.setMaximumSize(new Dimension(300, 50));
 		add(bConsultarHabs);
-
+		*/
+		
 	}
 
 	@Override
@@ -59,6 +61,9 @@ public class PanelOpciones extends JPanel implements ActionListener {
 
 		if (comando.equals(RESERVAR)) {
 			principalInterfazRecep.mostrarPanelReservar();
+		}
+		else if (comando.equals(REGISTRAR)) {
+			principalInterfazRecep.mostrarPanelRegistrarSalida();
 		}
 
 	}

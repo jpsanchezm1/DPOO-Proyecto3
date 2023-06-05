@@ -1,0 +1,3 @@
+pasarelas.implementaciones.Paypal
+pasarelas.implementaciones.Payu
+pasarelas.implementaciones.Sire

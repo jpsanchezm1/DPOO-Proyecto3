@@ -2,6 +2,7 @@ package consolaAH;
 
 import java.awt.BorderLayout;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -14,6 +15,7 @@ import consolaAH.inicioAH.PanelInicio;
 import consolaAH.inicioAH.PanelRegistro;
 import coordinadores.CoordinadorRecepcion;
 import modelo.autenticador.Autenticador;
+import modelo.habitaciones.ControladorHabitaciones;
 
 public class InterfazPrincipal extends JFrame {
 
@@ -24,7 +26,7 @@ public class InterfazPrincipal extends JFrame {
 	private PanelRegistro panelRegistro;
 	private InterfazHome home;
 	private Autenticador autenticador = new Autenticador();
-	private CoordinadorRecepcion coordinadorRecepcion = new CoordinadorRecepcion();
+	private CoordinadorRecepcion coordinadorRecepcion = new CoordinadorRecepcion(new ControladorHabitaciones());
 
 	public InterfazPrincipal() throws IOException {
 
@@ -80,6 +82,11 @@ public class InterfazPrincipal extends JFrame {
 
 	public List<String> consultarHabitacionesDisponibles(String fechaInicio, String fechaFin) {
 		return coordinadorRecepcion.consultarHabitaciones(fechaInicio, fechaFin);
+	}
+	
+	public void reservar(ArrayList<Integer> habsSeleccionadas, String infoRep, List<String> infoAcomp,
+			String fechaInicio, String fechaFin) {
+		coordinadorRecepcion.realizarReserva(habsSeleccionadas, infoRep, infoAcomp, fechaInicio, fechaFin);
 	}
 
 }

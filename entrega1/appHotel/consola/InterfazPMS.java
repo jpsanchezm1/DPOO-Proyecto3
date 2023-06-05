@@ -33,6 +33,7 @@ public class InterfazPMS extends JFrame {
 
 	public InterfazPMS() throws IOException {
 		
+
 		this.coordinadorRecepcion = new CoordinadorRecepcion(coordinadorAdministrador.getContrHab());
 		this.coordinadorEmpleado = new CoordinadorEmpleado(coordinadorRecepcion.getControladorHuespedes(),
 				coordinadorRecepcion.getControladorPagos(), coordinadorAdministrador.mapaServicios(),
@@ -112,6 +113,20 @@ public class InterfazPMS extends JFrame {
 				i++;
 			}
 		}
+	}
+
+
+	public boolean existeReserva(String id) {
+		
+		return coordinadorRecepcion.existeReserva(id);
+		
+	}
+
+
+	public void pagarReservaEfectivo(int id) {
+		
+		coordinadorRecepcion.pagarReservaEfectivo(id);
+		
 	}
 	
 	public List<String> getProductosDisponibles() {
