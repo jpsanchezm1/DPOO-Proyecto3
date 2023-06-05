@@ -18,7 +18,7 @@ public class CargadorHuespedes {
 				String[] partes = linea.split(";");
 				String nombre = partes[0];
 				int id = Integer.parseInt(partes[1]);
-				int numCel = Integer.parseInt(partes[2]);
+				String numCel = partes[2];
 				String correo = partes[3];
 
 				Huesped huespedActual = new Huesped(nombre, id, numCel, correo);

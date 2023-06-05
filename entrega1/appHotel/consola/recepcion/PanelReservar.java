@@ -82,7 +82,7 @@ public class PanelReservar extends JPanel {
 				boolean cellHasFocus) {
 			Component component = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-			// Aumentar el tamaño del texto
+			// Aumentar el tamaï¿½o del texto
 			Font font = component.getFont();
 			component.setFont(font.deriveFont(font.getSize() + 7.0f));
 
@@ -108,6 +108,7 @@ public class PanelReservar extends JPanel {
 			int index = info.indexOf(" ");
 			String idSring = info.substring(0, index);
 			idsSelec.add(Integer.parseInt(idSring));
+			
 		}
 		
 		return idsSelec;

@@ -22,12 +22,10 @@ public class CargadorConsumos {
 		while ((linea = lector.readLine()) != null) {
 			String[] partes = linea.split(";");
 			Huesped huesped = controladorRegistro.getHuespedPorId(Integer.parseInt(partes[0]));
-			Integer id = controladorRegistro.getGrupoPorId(huesped.getIdentificacion()).getRepresentante()
-					.getIdentificacion();
 			Servicio servicio = mapaServicios.get(partes[1]);
 			ConsumoServicio consumo = new ConsumoServicio(huesped, servicio);
-			mapaConsumosServicios.computeIfAbsent(id, k -> new ArrayList<>());
-			mapaConsumosServicios.get(id).add(consumo);
+			mapaConsumosServicios.computeIfAbsent(huesped.getIdentificacion(), k -> new ArrayList<>());
+			mapaConsumosServicios.get(huesped.getIdentificacion()).add(consumo);
 		}
 		lector.close();
 	}
@@ -40,12 +38,10 @@ public class CargadorConsumos {
 		while ((linea = lector.readLine()) != null) {
 			String[] partes = linea.split(";");
 			Huesped huesped = controladorRegistro.getHuespedPorId(Integer.parseInt(partes[0]));
-			Integer id = controladorRegistro.getGrupoPorId(huesped.getIdentificacion()).getRepresentante()
-					.getIdentificacion();
 			ProductoMenu producto = mapaProductosMenu.get(partes[1]);
 			ConsumoRestaurante consumo = new ConsumoRestaurante(huesped, producto);
-			mapaConsumosRestaurante.computeIfAbsent(id, k -> new ArrayList<>());
-			mapaConsumosRestaurante.get(id).add(consumo);
+			mapaConsumosRestaurante.computeIfAbsent(Integer.parseInt(partes[0]), k -> new ArrayList<>());
+			mapaConsumosRestaurante.get(Integer.parseInt(partes[0])).add(consumo);
 		}
 		lector.close();
 	}

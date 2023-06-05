@@ -21,8 +21,9 @@ public class PanelOpciones extends JPanel implements ActionListener {
 	private static final String REGISTRAR_HABITACION = "Registrar habitacion";
 	private static final String REGISTRAR_TARIFA = "Registrar tarifa";
 	private static final String CARGAR_SERVICIOS = "Cargar servicios";
+	private static final String VENTAS_RESTAURANTE = "Ventas restaurante";
 	private JButton bCargarHabitaciones, bCargarTarifas, bCargarMenu, bRegistrarHabitacion, bRegistrarTarifa,
-			bCargarServicios;
+			bCargarServicios,bVentasRestaurante;
 	private InterfazAdministracion interfazAdministracion;
 
 	public PanelOpciones(InterfazAdministracion interfaz) {
@@ -30,7 +31,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		setBackground(Color.DARK_GRAY);
-		setPreferredSize(new Dimension(700, 300));
+		setPreferredSize(new Dimension(750, 400));
 		setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
 		JPanel panelNorte = new JPanel();
@@ -88,6 +89,14 @@ public class PanelOpciones extends JPanel implements ActionListener {
 		bCargarServicios.addActionListener(this);
 		bCargarServicios.setActionCommand(CARGAR_SERVICIOS);
 		panelSur.add(bCargarServicios);
+		
+		panelSur.add(Box.createRigidArea(new Dimension(40, 50)));
+
+		bVentasRestaurante = new JButton(VENTAS_RESTAURANTE);
+		bVentasRestaurante.setMaximumSize(new Dimension(200, 50));
+		bVentasRestaurante.addActionListener(this);
+		bVentasRestaurante.setActionCommand(VENTAS_RESTAURANTE);
+		panelSur.add(bVentasRestaurante);
 
 		add(panelSur);
 	}
@@ -122,6 +131,10 @@ public class PanelOpciones extends JPanel implements ActionListener {
 
 		if (comando.equals(CARGAR_SERVICIOS)) {
 			interfazAdministracion.cargarServicios();
+		}
+		
+		if (comando.equals(VENTAS_RESTAURANTE)) {
+			interfazAdministracion.mostrarVentanaRestauranteVentas();
 		}
 	}
 
