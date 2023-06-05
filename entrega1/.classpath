@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="src" path="appHuespedes"/>
 	<classpathentry kind="src" path="Utilidades"/>
+	<classpathentry kind="src" path="pasarelas"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
