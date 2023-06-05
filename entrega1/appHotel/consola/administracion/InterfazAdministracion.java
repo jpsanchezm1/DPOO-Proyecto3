@@ -25,6 +25,7 @@ public class InterfazAdministracion extends JFrame {
 	private DialogoRegistroHabitacion registroHabitacion;
 	private CoordinadorAdministrador coordAdministrador;
 	private DialogoRegistroTarifa dialogoRegistroTarifa;
+	private VentanaRestauranteVentas ventanaRestauranteVentas;
 	private static final String CORRECTO = "El archivo se ha cargado correctamente.";
 	private static final String CORRECTO_HAB = "La habitacion se ha cargado correctamente.";
 	private static final String CORRECTO_TAR = "La tarifa se ha cargado correctamente.";
@@ -39,7 +40,7 @@ public class InterfazAdministracion extends JFrame {
 
 		this.padre = padreI;
 		setTitle("Administracion");
-		setSize(650, 450);
+		setSize(750, 450);
 		setResizable(false);
 		setLayout(new GridBagLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,9 +49,8 @@ public class InterfazAdministracion extends JFrame {
 		coordAdministrador = new CoordinadorAdministrador();
 		
 		JPanel panelPrincipal = new JPanel(new BorderLayout());
-		panelPrincipal.setPreferredSize(new Dimension(650,450));
+		panelPrincipal.setPreferredSize(new Dimension(750,450));
 		panelPrincipal.setBackground(Color.DARK_GRAY);
-		//panelPrincipal.setBorder(BorderFactory.createEmptyBorder(80,40,40,40));
 		
 		panelBanner = new PanelBanner(this, padre);
 
@@ -67,8 +67,8 @@ public class InterfazAdministracion extends JFrame {
 
 		add(panelPrincipal);
 
-		pack(); // Ajusta el tamaño del JFrame al contenido
-	    setLocationRelativeTo(null); // Centra la ventana en la pantalla
+		pack(); 
+	    setLocationRelativeTo(null); 
 	}
 
 	public void cargarHabitaciones() throws IOException {
@@ -230,5 +230,11 @@ public class InterfazAdministracion extends JFrame {
 		} else {
 			JOptionPane.showMessageDialog(null, CANCELADO, "Operación cancelada", JOptionPane.WARNING_MESSAGE);
 		}
+	}
+	
+	public void mostrarVentanaRestauranteVentas() {
+		dispose();
+		ventanaRestauranteVentas = new VentanaRestauranteVentas(this);
+		ventanaRestauranteVentas.setVisible(true);
 	}
 }
