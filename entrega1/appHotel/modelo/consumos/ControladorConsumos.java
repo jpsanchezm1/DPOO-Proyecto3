@@ -41,24 +41,20 @@ public class ControladorConsumos {
 
 	public void crearConsumoServicio(String idHuesped, String servicioString) throws IOException {
 		Huesped huesped = controladorRegistro.getHuespedPorId(Integer.parseInt(idHuesped));
-		Integer id = controladorRegistro.getGrupoPorId(Integer.parseInt(idHuesped)).getRepresentante()
-				.getIdentificacion();
 		Servicio servicio = mapaServicios.get(servicioString);
 		ConsumoServicio consumo = new ConsumoServicio(huesped, servicio);
-		mapaConsumosServicios.computeIfAbsent(id, k -> new ArrayList<>());
-		mapaConsumosServicios.get(id).add(consumo);
+		mapaConsumosServicios.computeIfAbsent(Integer.parseInt(idHuesped), k -> new ArrayList<>());
+		mapaConsumosServicios.get(Integer.parseInt(idHuesped)).add(consumo);
 		EditorConsumos editor = new EditorConsumos();
 		editor.registrarConsumo(archivoConsumosServicios, idHuesped, servicioString);
 	}
 
 	public void crearConsumoRest(String idHuesped, String productoMenu) throws IOException {
 		Huesped huesped = controladorRegistro.getHuespedPorId(Integer.parseInt(idHuesped));
-		Integer id = controladorRegistro.getGrupoPorId(Integer.parseInt(idHuesped)).getRepresentante()
-				.getIdentificacion();
 		ProductoMenu producto = mapaProductosMenu.get(productoMenu);
 		ConsumoRestaurante consumo = new ConsumoRestaurante(huesped, producto);
-		mapaConsumosRest.computeIfAbsent(id, k -> new ArrayList<>());
-		mapaConsumosRest.get(id).add(consumo);
+		mapaConsumosRest.computeIfAbsent(Integer.parseInt(idHuesped), k -> new ArrayList<>());
+		mapaConsumosRest.get(Integer.parseInt(idHuesped)).add(consumo);
 		EditorConsumos editor = new EditorConsumos();
 		editor.registrarConsumo(archivoConsumosRest, idHuesped, productoMenu);
 	}

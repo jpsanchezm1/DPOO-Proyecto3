@@ -4,10 +4,10 @@ public class Huesped {
 
 	private String nombre;
 	private Integer identificacion;
-	private int numCelular;
+	private String numCelular;
 	private String correo;
 
-	public Huesped(String nombre, int identificacion, int numCelular, String correo) {
+	public Huesped(String nombre, int identificacion, String numCelular, String correo) {
 		super();
 		this.nombre = nombre;
 		this.identificacion = identificacion;
@@ -23,7 +23,7 @@ public class Huesped {
 		return identificacion;
 	}
 
-	public int getNumCelular() {
+	public String getNumCelular() {
 		return numCelular;
 	}
 
@@ -39,7 +39,7 @@ public class Huesped {
 		this.identificacion = identificacion;
 	}
 
-	public void setNumCelular(int numCelular) {
+	public void setNumCelular(String numCelular) {
 		this.numCelular = numCelular;
 	}
 

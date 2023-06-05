@@ -25,7 +25,7 @@ public class ControladorHuespedes {
 	public Grupo crearGrupo(String infoHuesped) {
 		String[] partes = infoHuesped.split(";");
 
-		Huesped representante = new Huesped(partes[0], Integer.parseInt(partes[1]), Integer.parseInt(partes[2]),
+		Huesped representante = new Huesped(partes[0], Integer.parseInt(partes[1]), (partes[2]),
 				partes[3]);
 		Grupo grupo = new Grupo(representante);
 
@@ -45,7 +45,7 @@ public class ControladorHuespedes {
 
 			String[] partes = infoAcompanante.split(";");
 
-			Huesped acompanante = new Huesped(partes[0], Integer.parseInt(partes[1]), Integer.parseInt(partes[2]),
+			Huesped acompanante = new Huesped(partes[0], Integer.parseInt(partes[1]), (partes[2]),
 					partes[3]);
 			acompanantes.add(acompanante);
 
